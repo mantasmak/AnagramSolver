@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Interfaces.AnagramSolver
 {
-    interface IAnagramSolver
+    public interface IAnagramSolver
     {
         IList<string> GetAnagrams(string myWords);
     }

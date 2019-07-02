@@ -2,42 +2,50 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Interfaces.AnagramSolver;
+using System.Collections;
+using System.Linq;
 
 namespace Implementation.AnagramSolver
 {
-    class AnagramSolver
+    public class AnagramSolver : IAnagramSolver
     {
-        private HashSet<string> Words { get; set; }
+        public Dictionary<string, List<string>> Words { get; set; }
 
         public AnagramSolver()
         {
-            Words = new HashSet<string>();
+            Words = new Dictionary<string, List<string>>();
         }
 
-        private void ReadWords()
+        public Dictionary<string, IList<string>> FindAnagrams(List<string> words)
         {
-            string path = @"C:\Users\mantas\source\repos\MainApp\zodynas.txt";
+            Dictionary<string, IList<string>> anagrams = new Dictionary<string, IList<string>>();
 
-            if (File.Exists(path))
+            foreach(string s in words)
             {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string line = "";
-                    string[] splitWords;
+                anagrams.Add(s, GetAnagrams(s));
+            }
 
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        splitWords = line.Split('\t');
-                        Words.Add(splitWords[0]);
-                    }
-                }
+            return anagrams;
+        }
+
+        public IList<string> GetAnagrams(string myWords)
+        {
+            FileWordReader reader = new FileWordReader();
+            reader.ReadWords();
+            List<string> anagrams;
+
+            string key = string.Join(string.Empty, myWords.OrderBy(c => c));
+
+            if (reader.Words.TryGetValue(key, out anagrams))
+            {
+                return anagrams;
             }
             else
             {
-                Console.WriteLine("File does not exist!");
+                return null;
             }
         }
-
 
     }
 }

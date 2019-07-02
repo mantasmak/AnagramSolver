@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Interfaces.AnagramSolver
 {
-    interface IWordRepository
+    public interface IWordRepository
     {
+        void ReadWords();
     }
 }
