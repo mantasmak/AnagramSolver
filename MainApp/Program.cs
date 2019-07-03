@@ -15,29 +15,33 @@ namespace MainApp
         {
             Console.OutputEncoding = Encoding.UTF8;
             var conf = ConfigurationManager.AppSettings;
-            List<string> words = new List<string>();
+            int minWordLen = Int32.Parse(conf["minWordLen"]);
+            int maxListLen = Int32.Parse(conf["maxListlen"]);
+            var anSo = new AnagramSolver(maxListLen);
+            IList<string> anagrams;
 
-            foreach (var c in conf.AllKeys)
+            while (true)
             {
-                words.Add(conf.Get(c));
-            }
+                string word = Console.ReadLine();
 
-            var anSo = new AnagramSolver();
-            var anagrams = anSo.FindAnagrams(words);
-            if (anagrams == null)
-            {
-                Console.WriteLine("Anagramai nerasti");
-                return;
-            }
-
-            foreach (var d in anagrams)
-            {
-                if (d.Value != null)
+                if(word.Length < minWordLen)
                 {
-                    foreach (var s in d.Value)
+                    Console.WriteLine("Žodis per trumpas.");
+                    continue;
+                }
+
+                anagrams = anSo.GetAnagram(word);
+                
+                if (anagrams != null && anagrams.Any())
+                {
+                    foreach (var anagram in anagrams)
                     {
-                        Console.WriteLine($"{s}");
+                        Console.WriteLine($"\t{anagram}");
                     }
+                }
+                else
+                {
+                    Console.WriteLine($"\tAnagramai nerasti.");
                 }
             }
         }

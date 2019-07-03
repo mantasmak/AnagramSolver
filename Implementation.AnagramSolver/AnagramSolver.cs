@@ -10,36 +10,33 @@ namespace Implementation.AnagramSolver
 {
     public class AnagramSolver : IAnagramSolver
     {
-        public Dictionary<string, List<string>> Words { get; set; }
+        private int MaxListLen { get; set; }
 
         public AnagramSolver()
         {
-            Words = new Dictionary<string, List<string>>();
+            MaxListLen = 10;
         }
-
-        public Dictionary<string, IList<string>> FindAnagrams(List<string> words)
+        public AnagramSolver(int maxListLen)
         {
-            Dictionary<string, IList<string>> anagrams = new Dictionary<string, IList<string>>();
-
-            foreach(string s in words)
-            {
-                anagrams.Add(s, GetAnagrams(s));
-            }
-
-            return anagrams;
+            MaxListLen = maxListLen;
         }
 
-        public IList<string> GetAnagrams(string myWords)
+        public IList<string> GetAnagram(string myWords)
         {
             FileWordReader reader = new FileWordReader();
             reader.ReadWords();
             List<string> anagrams;
+            int indexToRemove = -1;
 
             string key = string.Join(string.Empty, myWords.OrderBy(c => c));
 
             if (reader.Words.TryGetValue(key, out anagrams))
             {
-                return anagrams;
+                indexToRemove = anagrams.FindIndex(a => a == myWords);
+                if (indexToRemove != -1)
+                    anagrams.RemoveAt(indexToRemove);
+
+                return anagrams.Take(MaxListLen).ToList();
             }
             else
             {

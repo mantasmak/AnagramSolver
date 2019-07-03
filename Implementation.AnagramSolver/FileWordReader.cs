@@ -69,7 +69,7 @@ namespace Implementation.AnagramSolver
                 Console.WriteLine($"{d.Key}");
                 foreach (var s in d.Value)
                 {
-                    Console.WriteLine($"#################{s}");
+                    Console.WriteLine($"\t{s}");
                 }
             }
         }
