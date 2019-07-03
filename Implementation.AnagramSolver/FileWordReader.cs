@@ -7,23 +7,32 @@ using System.Linq;
 
 namespace Implementation.AnagramSolver
 {
-    class FileWordReader : IWordRepository
+    public class FileWordReader : IWordRepository
     {
         public Dictionary<string, List<string>> Words { get; set; }
+        private string Path { get; set; }
 
         public FileWordReader()
         {
             Words = new Dictionary<string, List<string>>();
+            Path = @"C:\Users\mantas\source\repos\MainApp\zodynas.txt";
+            ReadWords();
+        }
+
+        public FileWordReader(string path)
+        {
+            Words = new Dictionary<string, List<string>>();
+            Path = path;
+            ReadWords();
         }
 
         public void ReadWords()
         {
-            string path = @"C:\Users\mantas\source\repos\MainApp\zodynas.txt";
             HashSet<Word> words = new HashSet<Word>();
 
-            if (File.Exists(path))
+            if (File.Exists(Path))
             {
-                using (StreamReader sr = new StreamReader(path))
+                using (StreamReader sr = new StreamReader(Path))
                 {
                     string line = string.Empty;
                     string[] splitWords;
@@ -48,28 +57,28 @@ namespace Implementation.AnagramSolver
             string key;
             List<string> values;
 
-            foreach(Word w in words)
+            foreach(Word word in words)
             {
-                key = string.Join(string.Empty, w.Name.OrderBy(c => c));
+                key = string.Join(string.Empty, word.Name.OrderBy(c => c));
                 if(!Words.TryGetValue(key, out values))
                 {
-                    Words.Add(key, new List<string>() { w.Name });
+                    Words.Add(key, new List<string>() { word.Name });
                 }
                 else
                 {
-                    Words[key].Add(w.Name);
+                    Words[key].Add(word.Name);
                 }
             }
         }
 
         public void PrintDictionary()
         {
-            foreach (var d in Words.Take(1000))
+            foreach (var word in Words.Take(1000))
             {
-                Console.WriteLine($"{d.Key}");
-                foreach (var s in d.Value)
+                Console.WriteLine($"{word.Key}");
+                foreach (var value in word.Value)
                 {
-                    Console.WriteLine($"\t{s}");
+                    Console.WriteLine($"\t{value}");
                 }
             }
         }

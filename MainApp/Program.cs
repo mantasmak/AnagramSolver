@@ -30,7 +30,7 @@ namespace MainApp
                     continue;
                 }
 
-                anagrams = anSo.GetAnagram(word);
+                anagrams = anSo.GetAnagrams(word);
                 
                 if (anagrams != null && anagrams.Any())
                 {
