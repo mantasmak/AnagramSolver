@@ -1,0 +1,37 @@
+﻿@model MainApp.WebApp.Models.WordContainerViewModel
+@{
+    ViewData["Title"] = "Words";
+}
+
+<h2>Žodžiai</h2>
+@{
+    Dictionary<string, string> wordQuery;
+    <ul>
+        @foreach (var word in Model.Words)
+        {
+            wordQuery = new Dictionary<string, string>
+    {
+                {"word", word}
+            };
+
+            <li>
+                <a asp-controller="Home" asp-action="Index" asp-all-route-data="wordQuery">@word</a>
+            </li>
+        }
+    </ul>
+
+    if ((int)ViewData["previousPageIndex"] >= 0)
+    {
+        Dictionary<string, string> previousPageData = new Dictionary<string, string>
+        {
+            {"startIndex", ViewData["previousPageIndex"].ToString()}
+        };
+        <a asp-controller="Home" asp-action="ListOfWords" asp-all-route-data="previousPageData">Previous page | </a>
+    }
+
+    Dictionary<string, string> nextPageData = new Dictionary<string, string>
+    {
+        {"startIndex", ViewData["nextPageIndex"].ToString()}
+    };
+    <a asp-controller="Home" asp-action="ListOfWords" asp-all-route-data="nextPageData">Next page</a>
+}

@@ -4,22 +4,53 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using System.Collections.Specialized;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Implementation.AnagramSolver.Tests
 {
     [TestFixture]
     class FileWordReaderTests
     {
-        [Test]
-        public void LettersAreInAlphabeticalOrder()
+        IConfiguration Config { get; set; }
+        string Path { get; set; }
+
+        [SetUp]
+        public void Setup()
         {
-            //var conf = ConfigurationManager.AppSettings;
-            FileWordReader reader = new FileWordReader(@"C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver.Tests\zodynasTest.txt");
+            Config = new ConfigurationBuilder().AddJsonFile("config.json").Build();
+            Path = Config["testFilePath"];
+        }
 
-            reader.ReadWords();
+        [Test]
+        public void DictionaryKeyLettersAreInAlphabeticalOrder()
+        {
+            FileWordReader reader = new FileWordReader(Path);
 
-            Assert.IsTrue(reader.Words.ContainsKey("alsu"));
-            Assert.IsTrue(reader.Words.ContainsKey("adgnsu"));
+            Assert.IsTrue(reader.ReadWords().ContainsKey("alsu"));
+            Assert.IsTrue(reader.ReadWords().ContainsKey("adgnsu"));
+        }
+
+        [Test]
+        public void ThrowExceptionIfFileDoesNotExist()
+        {
+            string notExistingFilePath = Config["notExistingFilePath"];
+
+            Assert.Throws<FileNotFoundException>(() => new FileWordReader(notExistingFilePath));
+        }
+
+        [Test]
+        public void AddsCorrectWordsToDictionaryValues()
+        {
+            FileWordReader reader = new FileWordReader(Path);
+            var dictWords = reader.ReadWords();
+            List<string> words;
+            bool wordExists = dictWords.TryGetValue("adgnsu", out words);
+
+            Assert.IsTrue(wordExists);
+            Assert.IsTrue(words.Contains("dangus"));
+            Assert.IsTrue(words.Contains("dugnas"));
+            Assert.IsTrue(words.Contains("gandus"));
         }
     }
 }

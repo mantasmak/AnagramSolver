@@ -12,5 +12,14 @@ dangus	dkt	dangum	2
 dangus	dkt	dangumi	5
 dangus	dkt	dangun	1
 dangus	dkt	dangus	15
-dangus	dkt	dangų	26]
+dangus	dkt	dangų	26
 sula	dkt	alui	1
+dugnas	dkt	dugnais	2
+dugnas	dkt	dugnan	2
+dugnas	dkt	dugnas	6
+dugnas	dkt	dugną	11
+dugnas	dkt	dugne	12
+dugnas	dkt	dugno	27
+dugnas	dkt	dugnu	6
+dugnas	dkt	dugnų	1
+gandus	bdv	gandų	1

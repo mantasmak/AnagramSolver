@@ -9,24 +9,43 @@ namespace Implementation.AnagramSolver
 {
     public class FileWordReader : IWordRepository
     {
-        public Dictionary<string, List<string>> Words { get; set; }
+        private Dictionary<string, List<string>> Words { get; set; }
         private string Path { get; set; }
 
         public FileWordReader()
         {
             Words = new Dictionary<string, List<string>>();
             Path = @"C:\Users\mantas\source\repos\MainApp\zodynas.txt";
-            ReadWords();
+            try
+            {
+                LoadWordsFromFile();
+            }
+            catch(FileNotFoundException e)
+            {
+                throw e;
+            }
         }
 
         public FileWordReader(string path)
         {
             Words = new Dictionary<string, List<string>>();
             Path = path;
-            ReadWords();
+            try
+            {
+                LoadWordsFromFile();
+            }
+            catch (FileNotFoundException e)
+            {
+                throw e;
+            }
         }
 
-        public void ReadWords()
+        public Dictionary<string, List<string>> ReadWords()
+        {
+            return Words;
+        }
+
+        private void LoadWordsFromFile()
         {
             HashSet<Word> words = new HashSet<Word>();
 
@@ -46,7 +65,7 @@ namespace Implementation.AnagramSolver
             }
             else
             {
-                Console.WriteLine("File does not exist!");
+                throw new FileNotFoundException();
             }
 
             ProcessWords(words);
