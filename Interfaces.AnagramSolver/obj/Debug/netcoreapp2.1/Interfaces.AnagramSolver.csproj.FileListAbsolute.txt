@@ -1,0 +1,9 @@
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.deps.json
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.csprojAssemblyReference.cache
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.csproj.CoreCompileInputs.cache
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.AssemblyInfoInputs.cache
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.AssemblyInfo.cs
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
+C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb

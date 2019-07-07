@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using MainApp.WebApp.Models;
 using Implementation.AnagramSolver;
 using Interfaces.AnagramSolver;
+using Microsoft.AspNetCore.Http;
 
 namespace MainApp.WebApp.Controllers
 {
@@ -37,6 +38,8 @@ namespace MainApp.WebApp.Controllers
             return View(wordViewModel);
         }
 
+        //public IActionResult 
+
         public IActionResult ListOfWords(int startIndex, int pageSize = 100)
         {
             WordContainerViewModel wordContainerViewModel = new WordContainerViewModel();
@@ -52,6 +55,23 @@ namespace MainApp.WebApp.Controllers
             ViewData["previousPageIndex"] = startIndex - pageSize;
 
             return View(wordContainerViewModel);
+        }
+
+        public IActionResult WriteCookies()
+        {
+            SaveCookies();
+            ViewData["Cookie"] = Request.Cookies["Time"];
+
+            return View();
+        }
+
+        public IActionResult SaveCookies()
+        {
+            var option = new CookieOptions();
+            option.Expires = DateTime.Now.AddMinutes(10);
+            Response.Cookies.Append("Time", "erwgerg", option);
+
+            return View();
         }
 
         public IActionResult About()
