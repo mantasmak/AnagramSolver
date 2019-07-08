@@ -5,11 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Implementation.AnagramSolver;
+using Interfaces.AnagramSolver;
 
 namespace MainApp.WebApp.Controllers
 {
     public class DataController : Controller
     {
+        IAnagramSolver anagramSolver;
+        IWordRepository fileWordReader;
+
+        public DataController(IAnagramSolver anagramSolver, IWordRepository fileWordReader)
+        {
+            this.anagramSolver = anagramSolver;
+            this.fileWordReader = fileWordReader;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -17,7 +27,6 @@ namespace MainApp.WebApp.Controllers
 
         public string GetAnagrams(string word)
         {
-            AnagramSolver anagramSolver = new AnagramSolver();
             IList<string> anagrams = anagramSolver.GetAnagrams(word);
             string json = JsonConvert.SerializeObject(anagrams);
             return json;
@@ -25,8 +34,7 @@ namespace MainApp.WebApp.Controllers
 
         public string GetDictionary()
         {
-            FileWordReader reader = new FileWordReader();
-            var wordsToDisplay = reader.ReadWords().SelectMany(d => d.Value)
+            var wordsToDisplay = fileWordReader.ReadWords().SelectMany(d => d.Value)
                 .ToList();
             string json = JsonConvert.SerializeObject(wordsToDisplay);
 

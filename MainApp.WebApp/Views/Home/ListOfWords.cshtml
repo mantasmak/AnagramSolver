@@ -5,33 +5,19 @@
 
 <h2>Žodžiai</h2>
 @{
-    Dictionary<string, string> wordQuery;
     <ul>
         @foreach (var word in Model.Words)
         {
-            wordQuery = new Dictionary<string, string>
-    {
-                {"word", word}
-            };
-
             <li>
-                <a asp-controller="Home" asp-action="Index" asp-all-route-data="wordQuery">@word</a>
+                @Html.ActionLink(word, "Index", "Home", new { word = word }, null)
             </li>
         }
     </ul>
 
     if ((int)ViewData["previousPageIndex"] >= 0)
     {
-        Dictionary<string, string> previousPageData = new Dictionary<string, string>
-        {
-            {"startIndex", ViewData["previousPageIndex"].ToString()}
-        };
-        <a asp-controller="Home" asp-action="ListOfWords" asp-all-route-data="previousPageData">Previous page | </a>
+        @Html.ActionLink("Previous page | ", "ListOfWords", "Home", new { startIndex = ViewData["previousPageIndex"] }, null)
     }
 
-    Dictionary<string, string> nextPageData = new Dictionary<string, string>
-    {
-        {"startIndex", ViewData["nextPageIndex"].ToString()}
-    };
-    <a asp-controller="Home" asp-action="ListOfWords" asp-all-route-data="nextPageData">Next page</a>
+    @Html.ActionLink("Next page", "ListOfWords", "Home", new { startIndex = ViewData["nextPageIndex"] }, null)
 }

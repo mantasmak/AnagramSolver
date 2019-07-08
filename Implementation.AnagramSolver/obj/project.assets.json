@@ -704,23 +704,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mantas\\.nuget\\packages\\": {},
+    "C:\\Users\\mantas\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mantas\\source\\repos\\AnagramSolver\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj",
+      "projectUniqueName": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj",
       "projectName": "Implementation.AnagramSolver",
-      "projectPath": "C:\\Users\\Mantas\\source\\repos\\AnagramSolver\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj",
-      "packagesPath": "C:\\Users\\Mantas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mantas\\source\\repos\\AnagramSolver\\Implementation.AnagramSolver\\obj\\",
+      "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj",
+      "packagesPath": "C:\\Users\\mantas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Mantas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mantas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -733,8 +733,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Mantas\\source\\repos\\AnagramSolver\\Interfaces.AnagramSolver\\Interfaces.AnagramSolver.csproj": {
-              "projectPath": "C:\\Users\\Mantas\\source\\repos\\AnagramSolver\\Interfaces.AnagramSolver\\Interfaces.AnagramSolver.csproj"
+            "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Interfaces.AnagramSolver.csproj": {
+              "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Interfaces.AnagramSolver.csproj"
             }
           }
         }

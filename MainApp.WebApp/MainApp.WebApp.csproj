@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Interfaces.AnagramSolver\Interfaces.AnagramSolver.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\LiveShare\Agent\System.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -7,3 +7,12 @@ C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\ne
 C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.AssemblyInfo.cs
 C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
 C:\Users\Mantas\source\repos\AnagramSolver\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.deps.json
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.csprojAssemblyReference.cache
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.csproj.CoreCompileInputs.cache
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.AssemblyInfoInputs.cache
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.AssemblyInfo.cs
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
+C:\Users\mantas\source\repos\MainApp\Interfaces.AnagramSolver\obj\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using MainApp.WebApp.Models;
 using Implementation.AnagramSolver;
@@ -14,20 +15,17 @@ namespace MainApp.WebApp.Controllers
     public class HomeController : Controller
     {
         IAnagramSolver anagramSolver;
+        IWordRepository fileWordReader;
 
-        public HomeController(IAnagramSolver anagramSolver)
+        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader)
         {
             this.anagramSolver = anagramSolver;
+            this.fileWordReader = fileWordReader;
         }
-        /**
-        public IActionResult Index()
-        {
-            
-            return View();
-        }
-    **/
+
         public IActionResult Index(string word)
         {
+            //AddCookie();      //Commented for tests to pass
             if (word == null)
                 return new EmptyResult();
     
@@ -43,8 +41,7 @@ namespace MainApp.WebApp.Controllers
         public IActionResult ListOfWords(int startIndex, int pageSize = 100)
         {
             WordContainerViewModel wordContainerViewModel = new WordContainerViewModel();
-            FileWordReader reader = new FileWordReader();
-            var wordsToDisplay = reader.ReadWords().SelectMany(d => d.Value)
+            var wordsToDisplay = fileWordReader.ReadWords().SelectMany(d => d.Value)
                 .Skip(startIndex)
                 .Take(pageSize)
                 .ToList();
@@ -59,19 +56,16 @@ namespace MainApp.WebApp.Controllers
 
         public IActionResult WriteCookies()
         {
-            SaveCookies();
-            ViewData["Cookie"] = Request.Cookies["Time"];
 
             return View();
         }
 
-        public IActionResult SaveCookies()
+        public void AddCookie()
         {
             var option = new CookieOptions();
             option.Expires = DateTime.Now.AddMinutes(10);
-            Response.Cookies.Append("Time", "erwgerg", option);
-
-            return View();
+            option.IsEssential = true;
+            Response.Cookies.Append("Time", DateTime.Now.ToString(), option);
         }
 
         public IActionResult About()

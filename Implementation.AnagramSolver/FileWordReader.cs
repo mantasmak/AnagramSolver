@@ -15,7 +15,7 @@ namespace Implementation.AnagramSolver
         public FileWordReader()
         {
             Words = new Dictionary<string, List<string>>();
-            Path = @"C:\Users\Mantas\source\repos\AnagramSolver\zodynas.txt";
+            Path = @"C:\Users\mantas\source\repos\MainApp\zodynas.txt";
             try
             {
                 LoadWordsFromFile();

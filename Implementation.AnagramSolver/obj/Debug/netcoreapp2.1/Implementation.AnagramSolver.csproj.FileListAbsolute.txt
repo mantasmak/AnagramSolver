@@ -10,3 +10,15 @@ C:\Users\Mantas\source\repos\AnagramSolver\Implementation.AnagramSolver\obj\Debu
 C:\Users\Mantas\source\repos\AnagramSolver\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.csproj.CopyComplete
 C:\Users\Mantas\source\repos\AnagramSolver\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.dll
 C:\Users\Mantas\source\repos\AnagramSolver\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.pdb
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.deps.json
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.dll
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.pdb
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.csprojAssemblyReference.cache
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.csproj.CoreCompileInputs.cache
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.AssemblyInfoInputs.cache
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.AssemblyInfo.cs
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.csproj.CopyComplete
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.dll
+C:\Users\mantas\source\repos\MainApp\Implementation.AnagramSolver\obj\Debug\netcoreapp2.1\Implementation.AnagramSolver.pdb

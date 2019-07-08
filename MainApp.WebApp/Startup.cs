@@ -34,6 +34,7 @@ namespace MainApp.WebApp
             });
 
             services.AddScoped<IAnagramSolver, AnagramSolver>();
+            services.AddScoped<IWordRepository, FileWordReader>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
