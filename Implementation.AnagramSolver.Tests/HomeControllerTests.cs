@@ -22,6 +22,9 @@ namespace Implementation.AnagramSolver.Tests
             anagramSolver = new Mock<IAnagramSolver>();
             wordRepository = new Mock<IWordRepository>();
             Config = new ConfigurationBuilder().AddJsonFile("config.json").Build();
+            wordRepository.Setup(x => x.ReadWords())
+               .Returns(new Dictionary<string, List<string>> { ["adgnsu"] = new List<string> { "dangus", "dugnas", "gandus" } });
+            anagramSolver.Setup(x => x.GetAnagrams("dangus")).Returns(new List<string> { "dugnas", "gandus" });
         }
 
         [Test]
@@ -44,10 +47,9 @@ namespace Implementation.AnagramSolver.Tests
             Assert.IsInstanceOf<ViewResult>(result);
         }
 
-        //Fails
         [Test]
         public void ListOfWordsReturnsView()
-        {
+        {           
             HomeController homeController = new HomeController(anagramSolver.Object, wordRepository.Object);
 
             var result = homeController.ListOfWords(0);

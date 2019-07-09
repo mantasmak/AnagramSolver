@@ -25,7 +25,7 @@ namespace MainApp.WebApp.Controllers
 
         public IActionResult Index(string word)
         {
-            //AddCookie();      //Commented for tests to pass
+            AddCookie();      //Commented for tests to pass
             if (word == null)
                 return new EmptyResult();
     
