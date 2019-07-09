@@ -36,8 +36,6 @@ namespace MainApp.WebApp.Controllers
             return View(wordViewModel);
         }
 
-        //public IActionResult 
-
         public IActionResult ListOfWords(int startIndex, int pageSize = 100)
         {
             WordContainerViewModel wordContainerViewModel = new WordContainerViewModel();
@@ -66,6 +64,15 @@ namespace MainApp.WebApp.Controllers
             option.Expires = DateTime.Now.AddMinutes(10);
             option.IsEssential = true;
             Response.Cookies.Append("Time", DateTime.Now.ToString(), option);
+        }
+
+        public IActionResult SearchWord(string searchString)
+        {
+            ViewData["searchString"] = searchString;
+            DatabaseWordReader dbReader = new DatabaseWordReader();
+            List<string> anagrams = dbReader.FindAnagrams(searchString).ToList();
+
+            return View(anagrams);
         }
 
         public IActionResult About()

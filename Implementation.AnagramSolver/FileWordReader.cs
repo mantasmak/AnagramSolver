@@ -45,7 +45,34 @@ namespace Implementation.AnagramSolver
             return Words;
         }
 
-        private void LoadWordsFromFile()
+        public string Find(int wordId)
+        {
+            wordId--;
+            List<Word> words = LoadWordsFromFile();
+
+            return words[wordId].Name;
+        }
+
+        public IList<string> FindAnagrams(string word)
+        {
+            List<Word> words = LoadWordsFromFile();
+            List<string> anagrams = new List<string>();
+            string sortedSearchWord = string.Join(string.Empty, word.OrderBy(c => c));
+            string sortedFileWord = string.Empty;
+
+            foreach(var wordFromFile in words)
+            {
+                sortedFileWord = string.Join(string.Empty, wordFromFile.Name.OrderBy(c => c));
+                if(string.Equals(sortedFileWord, sortedSearchWord))
+                {
+                    anagrams.Add(wordFromFile.Name);
+                }
+            }
+
+            return anagrams;
+        }
+
+        private List<Word> LoadWordsFromFile()
         {
             HashSet<Word> words = new HashSet<Word>();
 
@@ -68,7 +95,7 @@ namespace Implementation.AnagramSolver
                 throw new FileNotFoundException();
             }
 
-            ProcessWords(words);
+            return words.ToList<Word>();
         }
 
         private void ProcessWords(HashSet<Word> words)

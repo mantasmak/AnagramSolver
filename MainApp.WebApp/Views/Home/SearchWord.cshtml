@@ -1,0 +1,16 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "SearchWord";
+}
+
+<h2>SearchWord</h2>
+<h3>@ViewData["searchString"]</h3>
+
+<ul>
+@foreach(var anagram in Model)
+{
+    <li>
+        @anagram
+    </li>
+}
+</ul>

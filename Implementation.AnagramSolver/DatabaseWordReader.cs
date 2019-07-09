@@ -16,7 +16,6 @@ namespace Implementation.AnagramSolver
         {
             Words = new Dictionary<string, List<string>>();
             connectionString = "Data Source=LT-LIT-SC-0009;Initial Catalog=MainAppDatabase;Integrated Security=True";
-            LoadWordsFromFile();
         }
 
         public Dictionary<string, List<string>> ReadWords()
@@ -24,56 +23,54 @@ namespace Implementation.AnagramSolver
             return Words;
         }
 
-        private void LoadWordsFromFile()
+        public string Find(int wordId)
         {
-            HashSet<string> words = new HashSet<string>();
+            string searchedWord = string.Empty;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
+                SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words WHERE Id=@Id", connection);
+                select.Parameters.Add(new SqlParameter("Id", wordId));
+                using (SqlDataReader reader = select.ExecuteReader())
+                {
+                    reader.Read();
+                    searchedWord = reader.GetString(0);
+                }
+                connection.Close();
+            }
+            return searchedWord;
+        }
+
+        public IList<string> FindAnagrams(string word)
+        {
+            int i = 0;
+            List<string> anagrams = new List<string>();
+            string sortedSearchWord = string.Join(string.Empty, word.OrderBy(c => c));
+            string sortedDbWord = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                //SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words WHERE Word LIKE '@Test'", connection);
+                //select.Parameters.Add(new SqlParameter("Test", $"%{word}%"));
                 SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words", connection);
                 using (SqlDataReader reader = select.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        words.Add(reader.GetString(0));
+                        Console.WriteLine(i++);
+                        sortedDbWord = string.Join(string.Empty, reader.GetString(0).OrderBy(c => c));
+                        if (string.Equals(sortedDbWord, sortedSearchWord) && !string.Equals(word, reader.GetString(0)))
+                        {
+                            anagrams.Add(reader.GetString(0));
+                        }
                     }
                 }
                 connection.Close();
             }
 
-            ProcessWords(words);
-        }
-
-        private void ProcessWords(HashSet<string> words)
-        {
-            string key;
-            List<string> values;
-
-            foreach (string word in words)
-            {
-                key = string.Join(string.Empty, word.OrderBy(c => c));
-                if (!Words.TryGetValue(key, out values))
-                {
-                    Words.Add(key, new List<string>() { word });
-                }
-                else
-                {
-                    Words[key].Add(word);
-                }
-            }
-        }
-
-        public void PrintDictionary()
-        {
-            foreach (var word in Words)
-            {
-                Console.WriteLine($"{word.Key}");
-                foreach (var value in word.Value)
-                {
-                    Console.WriteLine($"\t{value}");
-                }
-            }
+            return anagrams;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Implementation.AnagramSolver;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace DatabaseConsoleApp
 {
@@ -14,7 +15,11 @@ namespace DatabaseConsoleApp
             if (select)
             {
                 DatabaseWordReader reader = new DatabaseWordReader();
-                reader.PrintDictionary();
+                List<string> anagrams = reader.FindAnagrams("dangus").ToList<string>();
+                foreach(var anagram in anagrams)
+                {
+                    Console.WriteLine(anagram);
+                }
                 //SelectWords();
             }
             else

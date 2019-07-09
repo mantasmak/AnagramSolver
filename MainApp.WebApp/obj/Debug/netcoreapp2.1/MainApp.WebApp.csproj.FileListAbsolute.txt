@@ -74,3 +74,4 @@ C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\Main
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.csproj.CopyComplete
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.dll
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.pdb
+C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\SearchWord.g.cshtml.cs
