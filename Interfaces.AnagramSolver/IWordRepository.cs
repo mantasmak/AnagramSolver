@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Interfaces.AnagramSolver
+namespace Contracts
 {
     public interface IWordRepository
     {
         string Find(int wordId);
 
+        IList<string> Find(string word);
+
         IList<string> FindAnagrams(string word);
 
-        Dictionary<string, List<string>> ReadWords();
+        IList<string> GetAllWords();
     }
 }

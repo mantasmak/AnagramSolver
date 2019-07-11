@@ -22,9 +22,7 @@ C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\MainApp.run
 C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\MainApp.dll
 C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\MainApp.pdb
 C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.dll
-C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
 C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.pdb
-C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb
 C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.csprojAssemblyReference.cache
 C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.csproj.CoreCompileInputs.cache
 C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.AssemblyInfoInputs.cache
@@ -32,3 +30,5 @@ C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.Ass
 C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.csproj.CopyComplete
 C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.dll
 C:\Users\mantas\source\repos\MainApp\MainApp\obj\Debug\netcoreapp2.1\MainApp.pdb
+C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\Contracts.dll
+C:\Users\mantas\source\repos\MainApp\MainApp\bin\Debug\netcoreapp2.1\Contracts.pdb

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using Implementation.AnagramSolver;
 using System.Linq;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace DatabaseConsoleApp
 {
@@ -14,18 +15,33 @@ namespace DatabaseConsoleApp
             bool select = true;
             if (select)
             {
-                DatabaseWordReader reader = new DatabaseWordReader();
-                List<string> anagrams = reader.FindAnagrams("dangus").ToList<string>();
+
+             
+                using (var conn = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]))
+                using (var command = new SqlCommand("dbo.TableDelete", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    command.Parameters.Add(new SqlParameter("Table", "dbo.CachedWords"));
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+            
+               /**
+                AnagramSolver solver = new AnagramSolver();
+                List<string> anagrams = solver.GetAnagrams("xiv").ToList();
                 foreach(var anagram in anagrams)
                 {
                     Console.WriteLine(anagram);
                 }
+    **/
                 //SelectWords();
             }
             else
             {
                 FileWordReader fileWordReader = new FileWordReader();
-                var wordsToInsert = fileWordReader.ReadWords().SelectMany(d => d.Value).ToList();
+                var wordsToInsert = fileWordReader.GetAllWords().ToList();
 
                 try
                 {

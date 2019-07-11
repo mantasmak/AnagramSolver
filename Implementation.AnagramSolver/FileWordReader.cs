@@ -1,48 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Interfaces.AnagramSolver;
+using Contracts;
 using System.IO;
 using System.Linq;
+using System.Configuration;
 
 namespace Implementation.AnagramSolver
 {
     public class FileWordReader : IWordRepository
     {
-        private Dictionary<string, List<string>> Words { get; set; }
         private string Path { get; set; }
 
         public FileWordReader()
         {
-            Words = new Dictionary<string, List<string>>();
-            Path = @"C:\Users\mantas\source\repos\MainApp\zodynas.txt";
-            try
-            {
-                LoadWordsFromFile();
-            }
-            catch(FileNotFoundException e)
-            {
-                throw e;
-            }
+            Path = ConfigurationManager.AppSettings["filePath"];
         }
 
         public FileWordReader(string path)
         {
-            Words = new Dictionary<string, List<string>>();
             Path = path;
-            try
-            {
-                LoadWordsFromFile();
-            }
-            catch (FileNotFoundException e)
-            {
-                throw e;
-            }
-        }
-
-        public Dictionary<string, List<string>> ReadWords()
-        {
-            return Words;
         }
 
         public string Find(int wordId)
@@ -51,6 +28,14 @@ namespace Implementation.AnagramSolver
             List<Word> words = LoadWordsFromFile();
 
             return words[wordId].Name;
+        }
+
+        public IList<string> Find(string word)
+        {
+            List<Word> words = LoadWordsFromFile();
+            var matches = words.Select(m => m.Name).Where(m => m.Contains(word)).ToList();
+
+            return matches;
         }
 
         public IList<string> FindAnagrams(string word)
@@ -63,13 +48,20 @@ namespace Implementation.AnagramSolver
             foreach(var wordFromFile in words)
             {
                 sortedFileWord = string.Join(string.Empty, wordFromFile.Name.OrderBy(c => c));
-                if(string.Equals(sortedFileWord, sortedSearchWord))
+                if (string.Equals(sortedFileWord, sortedSearchWord) && !string.Equals(word, wordFromFile.Name))
                 {
                     anagrams.Add(wordFromFile.Name);
                 }
             }
 
             return anagrams;
+        }
+
+        public IList<string> GetAllWords()
+        {
+            var words = LoadWordsFromFile().Select(w => w.Name).ToList();
+
+            return words;
         }
 
         private List<Word> LoadWordsFromFile()
@@ -97,50 +89,5 @@ namespace Implementation.AnagramSolver
 
             return words.ToList<Word>();
         }
-
-        private void ProcessWords(HashSet<Word> words)
-        {
-            string key;
-            List<string> values;
-
-            foreach(Word word in words)
-            {
-                key = string.Join(string.Empty, word.Name.OrderBy(c => c));
-                if(!Words.TryGetValue(key, out values))
-                {
-                    Words.Add(key, new List<string>() { word.Name });
-                }
-                else
-                {
-                    Words[key].Add(word.Name);
-                }
-            }
-        }
-
-        public void PrintDictionary()
-        {
-            foreach (var word in Words.Take(1000))
-            {
-                Console.WriteLine($"{word.Key}");
-                foreach (var value in word.Value)
-                {
-                    Console.WriteLine($"\t{value}");
-                }
-            }
-        }
-        /**
-        private void LoadWordsToDictionary(HashSet<Word> words)
-        {
-            var groupedWords = words.GroupBy(
-                w => w.Type,
-                w => w.Name,
-                (key, value) => new { Type = key, Words = value.ToList() });
-
-            foreach (var word in groupedWords)
-            {
-                Words.Add(word.Type, word.Words);
-            }
-        }
-    **/
     }
 }

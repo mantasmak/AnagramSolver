@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Interfaces.AnagramSolver
+namespace Contracts
 {
     public interface IAnagramSolver
     {
-        IList<string> GetAnagrams(string myWords);
+        IList<string> GetAnagrams(string words, string ip);
     }
 }

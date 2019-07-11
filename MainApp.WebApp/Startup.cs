@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Implementation.AnagramSolver;
-using Interfaces.AnagramSolver;
+using Contracts;
 
 namespace MainApp.WebApp
 {
@@ -34,7 +34,8 @@ namespace MainApp.WebApp
             });
 
             services.AddScoped<IAnagramSolver, AnagramSolver>();
-            services.AddScoped<IWordRepository, FileWordReader>();
+            services.AddScoped<IWordRepository, DatabaseWordReader>();
+            services.AddScoped<IUserLogRepository, UserLogRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

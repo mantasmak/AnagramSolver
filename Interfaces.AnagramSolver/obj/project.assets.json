@@ -694,9 +694,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Interfaces.AnagramSolver.csproj",
-      "projectName": "Interfaces.AnagramSolver",
-      "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Interfaces.AnagramSolver.csproj",
+      "projectUniqueName": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Contracts.csproj",
+      "projectName": "Contracts",
+      "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Contracts.csproj",
       "packagesPath": "C:\\Users\\mantas\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\obj\\",
       "projectStyle": "PackageReference",

@@ -400,11 +400,22 @@
           }
         }
       },
+      "Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Contracts.dll": {}
+        }
+      },
       "Implementation.AnagramSolver/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Interfaces.AnagramSolver": "1.0.0",
+          "Contracts": "1.0.0",
+          "System.Configuration.ConfigurationManager": "4.5.0",
           "System.Data.SqlClient": "4.6.1"
         },
         "compile": {
@@ -412,16 +423,6 @@
         },
         "runtime": {
           "bin/placeholder/Implementation.AnagramSolver.dll": {}
-        }
-      },
-      "Interfaces.AnagramSolver/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.1",
-        "compile": {
-          "bin/placeholder/Interfaces.AnagramSolver.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Interfaces.AnagramSolver.dll": {}
         }
       }
     }
@@ -1314,15 +1315,15 @@
         "version.txt"
       ]
     },
+    "Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Interfaces.AnagramSolver/Contracts.csproj",
+      "msbuildProject": "../Interfaces.AnagramSolver/Contracts.csproj"
+    },
     "Implementation.AnagramSolver/1.0.0": {
       "type": "project",
       "path": "../Implementation.AnagramSolver/Implementation.AnagramSolver.csproj",
       "msbuildProject": "../Implementation.AnagramSolver/Implementation.AnagramSolver.csproj"
-    },
-    "Interfaces.AnagramSolver/1.0.0": {
-      "type": "project",
-      "path": "../Interfaces.AnagramSolver/Interfaces.AnagramSolver.csproj",
-      "msbuildProject": "../Interfaces.AnagramSolver/Interfaces.AnagramSolver.csproj"
     }
   },
   "projectFileDependencyGroups": {

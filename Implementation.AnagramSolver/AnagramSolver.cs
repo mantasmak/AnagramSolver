@@ -2,60 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using Interfaces.AnagramSolver;
+using Contracts;
 using System.Collections;
 using System.Linq;
+using System.Diagnostics;
+using System.Configuration;
 
 namespace Implementation.AnagramSolver
 {
     public class AnagramSolver : IAnagramSolver
     {
         public int MaxListLen { get; set; }
-        private FileWordReader Reader { get; set; }
+        //TODO: DI
+        private IWordRepository Reader { get; set; }
 
-        public AnagramSolver()
+        private CacheRepository Cache { get; set; }
+
+        public AnagramSolver(IWordRepository wordRepository)
         {
-            MaxListLen = 10;
-            Reader = new FileWordReader();
+            MaxListLen = Int32.Parse(ConfigurationManager.AppSettings["maxListLen"]);
+            Reader = wordRepository;
+            Cache = new CacheRepository();
         }
 
-        public AnagramSolver(int maxListLen)
+        public IList<string> GetAnagrams(string word, string ip)
         {
-            MaxListLen = maxListLen;
-            Reader = new FileWordReader();
-        }
-
-        public AnagramSolver(string path)
-        {
-            MaxListLen = 10;
-            Reader = new FileWordReader(path);
-        }
-
-        public AnagramSolver(int maxListLen, string path)
-        {
-            MaxListLen = maxListLen;
-            Reader = new FileWordReader(path);
-        }
-
-        public IList<string> GetAnagrams(string myWords)
-        {
-            List<string> anagrams;
-            int indexToRemove = -1;
-            
-                string key = string.Join(string.Empty, myWords.OrderBy(c => c));
-            
-            if (Reader.ReadWords().TryGetValue(key, out anagrams))
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var anagrams = Cache.GetCachedAnagrams(word);
+            if(anagrams.Count == 0)
             {
-                indexToRemove = anagrams.FindIndex(a => a == myWords);
-                if (indexToRemove != -1)
-                    anagrams.RemoveAt(indexToRemove);
+                anagrams = Reader.FindAnagrams(word);
+                Cache.Save(word, anagrams);
+            }
+            stopWatch.Stop();
+            UserLogRepository userLog = new UserLogRepository();
+            userLog.Save(ip, word, DateTime.Now);
 
-                return anagrams.Take(MaxListLen).ToList();
-            }
-            else
-            {
-                return null;
-            }
+            return anagrams;
         }
     }
 }

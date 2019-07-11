@@ -13,11 +13,11 @@ namespace MainApp
     {
         static public void Main(string[] args)
         {
+            /**
             Console.OutputEncoding = Encoding.UTF8;
             var conf = ConfigurationManager.AppSettings;
             int minWordLen = Int32.Parse(conf["minWordLen"]);
-            int maxListLen = Int32.Parse(conf["maxListlen"]);
-            var anSo = new AnagramSolver(maxListLen);
+            var anSo = new AnagramSolver();
             IList<string> anagrams;
 
             while (true)
@@ -44,6 +44,7 @@ namespace MainApp
                     Console.WriteLine($"\tAnagramai nerasti.");
                 }
             }
+    **/
         }
     }
 }

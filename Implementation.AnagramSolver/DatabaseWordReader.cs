@@ -2,25 +2,20 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using Interfaces.AnagramSolver;
+using Contracts;
 using System.Linq;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace Implementation.AnagramSolver
 {
     public class DatabaseWordReader : IWordRepository
     {
-        private Dictionary<string, List<string>> Words { get; set; }
         private string connectionString;
 
         public DatabaseWordReader()
         {
-            Words = new Dictionary<string, List<string>>();
-            connectionString = "Data Source=LT-LIT-SC-0009;Initial Catalog=MainAppDatabase;Integrated Security=True";
-        }
-
-        public Dictionary<string, List<string>> ReadWords()
-        {
-            return Words;
+            connectionString = ConfigurationManager.AppSettings["connectionString"];
         }
 
         public string Find(int wordId)
@@ -41,10 +36,30 @@ namespace Implementation.AnagramSolver
             }
             return searchedWord;
         }
+        
+        public IList<string> Find(string word)
+        {
+            List<string> searchedWords = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words WHERE Word LIKE @Word", connection);
+                select.Parameters.Add(new SqlParameter("Word", $"%{word}%"));
+                using (SqlDataReader reader = select.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        searchedWords.Add(reader.GetString(0));
+                    }
+                }
+                connection.Close();
+            }
+            return searchedWords;
+        }
 
         public IList<string> FindAnagrams(string word)
         {
-            int i = 0;
             List<string> anagrams = new List<string>();
             string sortedSearchWord = string.Join(string.Empty, word.OrderBy(c => c));
             string sortedDbWord = string.Empty;
@@ -52,14 +67,11 @@ namespace Implementation.AnagramSolver
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                //SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words WHERE Word LIKE '@Test'", connection);
-                //select.Parameters.Add(new SqlParameter("Test", $"%{word}%"));
                 SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words", connection);
                 using (SqlDataReader reader = select.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Console.WriteLine(i++);
                         sortedDbWord = string.Join(string.Empty, reader.GetString(0).OrderBy(c => c));
                         if (string.Equals(sortedDbWord, sortedSearchWord) && !string.Equals(word, reader.GetString(0)))
                         {
@@ -69,8 +81,30 @@ namespace Implementation.AnagramSolver
                 }
                 connection.Close();
             }
+            foreach (var an in anagrams)
+                Console.WriteLine(an);
 
             return anagrams;
+        }
+
+        public IList<string> GetAllWords()
+        {
+            List<string> searchedWords = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand select = new SqlCommand("SELECT Word FROM dbo.Words", connection);
+                using (SqlDataReader reader = select.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        searchedWords.Add(reader.GetString(0));
+                    }
+                }
+                connection.Close();
+            }
+            return searchedWords;
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿@using Contracts;
+@model List<UserLogReport>
+@{
+    ViewData["Title"] = "UserLogs";
+}
+
+<h2>UserLogs</h2>
+
+<ul>
+    @foreach (var report in Model)
+    {
+        <li>
+            @report.UserIp
+        </li>
+        <li>
+            @report.SearchTime
+        </li>
+        <li>
+            @report.Word
+        </li>
+        <li>
+            @report.Anagrams[0]
+        </li>
+        <hr />
+    }
+</ul>

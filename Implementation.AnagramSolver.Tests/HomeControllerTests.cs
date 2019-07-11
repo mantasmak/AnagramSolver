@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Interfaces.AnagramSolver;
+using Contracts;
 using MainApp.WebApp.Controllers;
 using Moq;
 using NUnit.Framework;

@@ -7,7 +7,7 @@ using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using MainApp.WebApp.Models;
 using Implementation.AnagramSolver;
-using Interfaces.AnagramSolver;
+using Contracts;
 using Microsoft.AspNetCore.Http;
 
 namespace MainApp.WebApp.Controllers
@@ -15,23 +15,26 @@ namespace MainApp.WebApp.Controllers
     public class HomeController : Controller
     {
         IAnagramSolver anagramSolver;
-        IWordRepository fileWordReader;
+        IWordRepository wordRepository;
+        IUserLogRepository logRepository;
 
-        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader)
+        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository)
         {
             this.anagramSolver = anagramSolver;
-            this.fileWordReader = fileWordReader;
+            this.wordRepository = fileWordReader;
+            this.logRepository = logRepository;
         }
 
         public IActionResult Index(string word)
         {
-            AddCookie();      //Commented for tests to pass
+            AddCookie();
             if (word == null)
                 return new EmptyResult();
     
             WordViewModel wordViewModel = new WordViewModel();
             wordViewModel.Name = word;
-            wordViewModel.Anagrams = anagramSolver.GetAnagrams(word);
+            string ip = HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString();
+            wordViewModel.Anagrams = anagramSolver.GetAnagrams(word, ip);
 
             return View(wordViewModel);
         }
@@ -39,7 +42,7 @@ namespace MainApp.WebApp.Controllers
         public IActionResult ListOfWords(int startIndex, int pageSize = 100)
         {
             WordContainerViewModel wordContainerViewModel = new WordContainerViewModel();
-            var wordsToDisplay = fileWordReader.ReadWords().SelectMany(d => d.Value)
+            var wordsToDisplay = wordRepository.GetAllWords()
                 .Skip(startIndex)
                 .Take(pageSize)
                 .ToList();
@@ -69,10 +72,16 @@ namespace MainApp.WebApp.Controllers
         public IActionResult SearchWord(string searchString)
         {
             ViewData["searchString"] = searchString;
-            DatabaseWordReader dbReader = new DatabaseWordReader();
-            List<string> anagrams = dbReader.FindAnagrams(searchString).ToList();
+            List<string> anagrams = wordRepository.Find(searchString).ToList();
 
             return View(anagrams);
+        }
+
+        public IActionResult UserLogs()
+        {
+            List<UserLogReport> reports = logRepository.GetUserLogReport();
+
+            return View(reports);
         }
 
         public IActionResult About()

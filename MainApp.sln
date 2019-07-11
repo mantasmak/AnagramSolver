@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp", "MainApp\MainApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Implementation.AnagramSolver", "Implementation.AnagramSolver\Implementation.AnagramSolver.csproj", "{8BA17471-475C-4BF3-82B2-4F94873E9EAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces.AnagramSolver", "Interfaces.AnagramSolver\Interfaces.AnagramSolver.csproj", "{783AEDDE-9143-42D9-A388-7DB1E6BA5ADC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Interfaces.AnagramSolver\Contracts.csproj", "{783AEDDE-9143-42D9-A388-7DB1E6BA5ADC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Implementation.AnagramSolver.Tests", "Implementation.AnagramSolver.Tests\Implementation.AnagramSolver.Tests.csproj", "{2D223915-1C4D-4DFD-8627-AE8C80364DA2}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppTester", "WebAppTester\WebAppTester.csproj", "{34555BCD-658E-4168-94A7-5EEA7B7AAD45}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseConsoleApp", "DatabaseConsoleApp\DatabaseConsoleApp.csproj", "{917A4A81-A8A7-4FFE-8B5D-F84109C5B3DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MainApp.EF.DatabaseFirst", "MainApp.EF.DatabaseFirst\MainApp.EF.DatabaseFirst.csproj", "{EECF4221-EA70-4172-B2A9-8A7C5507EBDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,7 +38,6 @@ Global
 		{783AEDDE-9143-42D9-A388-7DB1E6BA5ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{783AEDDE-9143-42D9-A388-7DB1E6BA5ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D223915-1C4D-4DFD-8627-AE8C80364DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D223915-1C4D-4DFD-8627-AE8C80364DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D223915-1C4D-4DFD-8627-AE8C80364DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D223915-1C4D-4DFD-8627-AE8C80364DA2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2709CD61-9474-40CA-B688-235C7C8EEB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -51,6 +52,10 @@ Global
 		{917A4A81-A8A7-4FFE-8B5D-F84109C5B3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{917A4A81-A8A7-4FFE-8B5D-F84109C5B3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{917A4A81-A8A7-4FFE-8B5D-F84109C5B3DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EECF4221-EA70-4172-B2A9-8A7C5507EBDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EECF4221-EA70-4172-B2A9-8A7C5507EBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EECF4221-EA70-4172-B2A9-8A7C5507EBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EECF4221-EA70-4172-B2A9-8A7C5507EBDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

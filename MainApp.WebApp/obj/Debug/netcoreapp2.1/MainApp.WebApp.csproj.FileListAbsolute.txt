@@ -44,9 +44,7 @@ C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Main
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\MainApp.WebApp.Views.dll
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\MainApp.WebApp.Views.pdb
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.dll
-C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.dll
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Implementation.AnagramSolver.pdb
-C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Interfaces.AnagramSolver.pdb
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.csprojAssemblyReference.cache
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.csproj.CoreCompileInputs.cache
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.RazorAssemblyInfo.cache
@@ -75,3 +73,7 @@ C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\Main
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.dll
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\MainApp.WebApp.pdb
 C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\SearchWord.g.cshtml.cs
+C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\MainApp.WebApp.dll.config
+C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\UserLogs.g.cshtml.cs
+C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Contracts.dll
+C:\Users\mantas\source\repos\MainApp\MainApp.WebApp\bin\Debug\netcoreapp2.1\Contracts.pdb
