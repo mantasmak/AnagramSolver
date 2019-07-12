@@ -10,16 +10,24 @@
     @foreach (var report in Model)
     {
         <li>
-            @report.UserIp
+            User IP: @report.UserIp
         </li>
         <li>
-            @report.SearchTime
+            Date: @report.SearchTime
         </li>
         <li>
-            @report.Word
+            Word: @report.Word
         </li>
         <li>
-            @report.Anagrams[0]
+            Anagrams: 
+        <ol>
+        @foreach (var anagram in report.Anagrams)
+        {
+            <li>
+                @anagram
+            </li>
+        }
+        </ol>
         </li>
         <hr />
     }

@@ -5,6 +5,7 @@ using Implementation.AnagramSolver;
 using System.Linq;
 using System.Collections.Generic;
 using System.Configuration;
+using MainApp.EF.DatabaseFirst;
 
 namespace DatabaseConsoleApp
 {
@@ -15,8 +16,14 @@ namespace DatabaseConsoleApp
             bool select = true;
             if (select)
             {
-
-             
+                EFCacheRepository ef = new EFCacheRepository();
+                List<string> list = ef.GetCachedAnagrams("laidas").ToList();
+                foreach(var el in list)
+                {
+                    Console.WriteLine(el);
+                }
+                
+             /**
                 using (var conn = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]))
                 using (var command = new SqlCommand("dbo.TableDelete", conn)
                 {
@@ -27,7 +34,7 @@ namespace DatabaseConsoleApp
                     conn.Open();
                     command.ExecuteNonQuery();
                 }
-            
+            **/
                /**
                 AnagramSolver solver = new AnagramSolver();
                 List<string> anagrams = solver.GetAnagrams("xiv").ToList();

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using System.Configuration;
+using Contracts;
 
 namespace Implementation.AnagramSolver
 {
-    public class CacheRepository
+    public class CacheRepository : ICacheRepository
     {
         private string connectionString;
 

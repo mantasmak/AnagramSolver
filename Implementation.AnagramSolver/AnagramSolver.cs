@@ -13,10 +13,10 @@ namespace Implementation.AnagramSolver
     public class AnagramSolver : IAnagramSolver
     {
         public int MaxListLen { get; set; }
-        //TODO: DI
+        
         private IWordRepository Reader { get; set; }
 
-        private CacheRepository Cache { get; set; }
+        private ICacheRepository Cache { get; set; }
 
         public AnagramSolver(IWordRepository wordRepository)
         {

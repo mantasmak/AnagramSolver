@@ -32,6 +32,7 @@ namespace Implementation.AnagramSolver
 
         public List<UserLogReport> GetUserLogReport()
         {
+            bool added = false;
             List<UserLogReport> userLogReports = new List<UserLogReport>();
             List<string> anagrams = new List<string>();
             string query = "SELECT UserLog.UserIp, UserLog.SearchTime, UserLog.Word, Words.Word as Anagram " +
@@ -47,12 +48,25 @@ namespace Implementation.AnagramSolver
                 {
                     while (reader.Read())
                     {
+                        added = false;
                         UserLogReport report = new UserLogReport();
                         report.UserIp = reader.GetString(0);
                         report.SearchTime = reader.GetDateTime(1);
                         report.Word = reader.GetString(2);
-                        report.Anagrams = new List<string> { reader.GetString(3) };
-                        userLogReports.Add(report);
+                        foreach(var logReport in userLogReports)
+                        {
+                            if(logReport.UserIp == report.UserIp && logReport.SearchTime == report.SearchTime)
+                            {
+                                logReport.Anagrams.Add(reader.GetString(3));
+                                added = true;
+                                break;
+                            }
+                        }
+                        if (!added)
+                        {
+                            report.Anagrams = new List<string> { reader.GetString(3) };
+                            userLogReports.Add(report);
+                        }
                     }
                 }
                 connection.Close();
