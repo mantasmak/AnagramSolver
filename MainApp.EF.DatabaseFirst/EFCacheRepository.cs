@@ -24,7 +24,9 @@ namespace MainApp.EF.DatabaseFirst
 
         public void Save(string word, IEnumerable<string> anagrams)
         {
-            throw new NotImplementedException();
+            CachedWords cache = new CachedWords();
+            cache.Word = word;
+            
         }
     }
 }
