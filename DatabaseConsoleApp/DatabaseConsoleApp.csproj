@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Implementation.AnagramSolver\Implementation.AnagramSolver.csproj" />
+    <ProjectReference Include="..\MainApp.EF.CodeFirst\MainApp.EF.CodeFirst.csproj" />
     <ProjectReference Include="..\MainApp.EF.DatabaseFirst\MainApp.EF.DatabaseFirst.csproj" />
   </ItemGroup>
 

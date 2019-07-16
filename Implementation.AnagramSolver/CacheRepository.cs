@@ -72,11 +72,11 @@ namespace Implementation.AnagramSolver
                 if (!reader.HasRows)
                 {
                     reader.Close();
-                    SqlCommand selectId = new SqlCommand("SELECT Id FROM dbo.Words WHERE Word=@Word", connection);
+                    SqlCommand selectId = new SqlCommand("SELECT Id FROM dbo.Words WHERE Word=@Anagram", connection);
 
                     foreach (var anagram in anagrams)
                     {
-                        selectId.Parameters.AddWithValue("Word", anagram);
+                        selectId.Parameters.AddWithValue("Anagram", anagram);
                         reader = selectId.ExecuteReader();
                         reader.Read();
                         anagramIds.Add(reader.GetInt32(0));

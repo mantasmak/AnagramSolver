@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MainApp.EF.CodeFirst
 {
-    class CachedWords
+    public class CachedWords
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

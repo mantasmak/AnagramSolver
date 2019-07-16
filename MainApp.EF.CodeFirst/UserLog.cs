@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MainApp.EF.CodeFirst
 {
-    class UserLog
+    public class UserLog
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

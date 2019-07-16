@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Implementation.AnagramSolver;
 using Contracts;
 using MainApp.EF.DatabaseFirst;
+using MainApp.EF.CodeFirst;
 
 namespace MainApp.WebApp
 {
@@ -35,8 +36,9 @@ namespace MainApp.WebApp
             });
 
             services.AddScoped<IAnagramSolver, AnagramSolver>();
-            services.AddScoped<IWordRepository, EFWordReader>();
-            services.AddScoped<IUserLogRepository, UserLogRepository>();
+            services.AddScoped<IWordRepository, EFCFWordReader>();
+            services.AddScoped<IUserLogRepository, EFCFUserLogRepository>();
+            services.AddScoped<ICacheRepository, EFCFCacheRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MainApp.EF.DatabaseFirst
 {
-    public class EFCacheRepository : ICacheRepository
+    public class EFDBFCacheRepository : ICacheRepository
     {
         public IList<string> GetCachedAnagrams(string word)
         {
@@ -24,8 +24,19 @@ namespace MainApp.EF.DatabaseFirst
 
         public void Save(string word, IEnumerable<string> anagrams)
         {
-            CachedWords cache = new CachedWords();
-            cache.Word = word;
+            using(var context = new MainAppDatabaseContext())
+            {
+                var wordId = context.Words.Where(w => anagrams.Contains(w.Word)).Select(i => i.Id);
+                foreach(var id in wordId)
+                {
+                    CachedWords cache = new CachedWords();
+                    cache.Word = word;
+                    cache.AnagramId = id;
+                    context.CachedWords.Add(cache);
+                }
+                context.SaveChanges();
+            }
+
             
         }
     }

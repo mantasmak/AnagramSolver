@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MainApp.EF.DatabaseFirst
 {
-    public class EFWordReader : IWordRepository
+    public class EFDBFWordReader : IWordRepository
     {
         public string Find(int wordId)
         {

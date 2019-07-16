@@ -18,24 +18,21 @@ namespace Implementation.AnagramSolver
 
         private ICacheRepository Cache { get; set; }
 
-        public AnagramSolver(IWordRepository wordRepository)
+        public AnagramSolver(IWordRepository wordRepository, ICacheRepository cacheRepository)
         {
             MaxListLen = Int32.Parse(ConfigurationManager.AppSettings["maxListLen"]);
             Reader = wordRepository;
-            Cache = new CacheRepository();
+            Cache = cacheRepository;
         }
 
         public IList<string> GetAnagrams(string word, string ip)
         {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
             var anagrams = Cache.GetCachedAnagrams(word);
             if(anagrams.Count == 0)
             {
                 anagrams = Reader.FindAnagrams(word);
                 Cache.Save(word, anagrams);
             }
-            stopWatch.Stop();
             UserLogRepository userLog = new UserLogRepository();
             userLog.Save(ip, word, DateTime.Now);
 

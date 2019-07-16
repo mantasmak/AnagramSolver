@@ -17,12 +17,14 @@ namespace MainApp.WebApp.Controllers
         IAnagramSolver anagramSolver;
         IWordRepository wordRepository;
         IUserLogRepository logRepository;
+        ICacheRepository cacheRepository;
 
-        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository)
+        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository)
         {
             this.anagramSolver = anagramSolver;
             this.wordRepository = fileWordReader;
             this.logRepository = logRepository;
+            this.cacheRepository = cacheRepository;
         }
 
         public IActionResult Index(string word)

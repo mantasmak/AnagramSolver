@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MainApp.EF.CodeFirst
 {
-    class Words
+    public class Words
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -5,12 +5,46 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190715074700_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715074700_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715081224_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715081224_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715082253_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715082253_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715082401_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715082401_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715092848_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715092848_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715134706_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715134706_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715135307_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715135307_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715135420_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715135420_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190715141453_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190715141453_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces.AnagramSolver\Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Protocols">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.identitymodel.protocols\5.2.0\lib\netstandard1.4\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
