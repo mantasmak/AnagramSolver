@@ -12,31 +12,47 @@ namespace Implementation.AnagramSolver
 {
     public class AnagramSolver : IAnagramSolver
     {
+        private readonly int allowedSearches = 2;
+
         public int MaxListLen { get; set; }
         
         private IWordRepository Reader { get; set; }
 
         private ICacheRepository Cache { get; set; }
 
-        public AnagramSolver(IWordRepository wordRepository, ICacheRepository cacheRepository)
+        private INumOfAllowedSearchesRepository AllowedSearches { get; set; }
+
+        public AnagramSolver(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches)
         {
             MaxListLen = Int32.Parse(ConfigurationManager.AppSettings["maxListLen"]);
             Reader = wordRepository;
             Cache = cacheRepository;
+            AllowedSearches = allowedSearches;
         }
 
         public IList<string> GetAnagrams(string word, string ip)
         {
-            var anagrams = Cache.GetCachedAnagrams(word);
-            if(anagrams.Count == 0)
+            if(!AllowedSearches.CheckIfExists(ip))
             {
-                anagrams = Reader.FindAnagrams(word);
-                Cache.Save(word, anagrams);
+                AllowedSearches.SaveNewUser(ip, allowedSearches);
             }
-            UserLogRepository userLog = new UserLogRepository();
-            userLog.Save(ip, word, DateTime.Now);
 
-            return anagrams;
+            if (AllowedSearches.GetAmountOfSearches(ip) <= allowedSearches)
+            {
+                var anagrams = Cache.GetCachedAnagrams(word);
+                if (anagrams.Count == 0)
+                {
+                    anagrams = Reader.FindAnagrams(word);
+                    Cache.Save(word, anagrams);
+                }
+                UserLogRepository userLog = new UserLogRepository();
+                userLog.Save(ip, word, DateTime.Now);
+                return anagrams;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -3727,6 +3727,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.2.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.2.6",
+          "Microsoft.Extensions.Configuration.Json": "2.2.0",
           "System.Configuration.ConfigurationManager": "4.5.0"
         },
         "compile": {

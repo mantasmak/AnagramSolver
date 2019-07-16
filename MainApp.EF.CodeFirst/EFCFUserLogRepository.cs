@@ -8,6 +8,16 @@ namespace MainApp.EF.CodeFirst
 {
     public class EFCFUserLogRepository : IUserLogRepository
     {
+        public int CountUserSearchesByIp(string userIp)
+        {
+            using(MainAppDatabaseContext context = new MainAppDatabaseContext())
+            {
+                var selectUserCount = context.UserLog.Where(u => u.UserIp == userIp).Count();
+
+                return selectUserCount;
+            }
+        }
+
         public List<UserLogReport> GetUserLogReport()
         {
             bool added = false;
@@ -58,7 +68,7 @@ namespace MainApp.EF.CodeFirst
 
         public void Save(string ip, string word, DateTime time)
         {
-            UserLog log = new UserLog();
+            UserLogEntity log = new UserLogEntity();
             log.UserIp = ip;
             log.Word = word;
             log.SearchTime = time;

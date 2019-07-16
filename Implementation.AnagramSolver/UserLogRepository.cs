@@ -11,6 +11,11 @@ namespace Implementation.AnagramSolver
     {
         private string connectionString;
 
+        public int CountUserSearchesByIp(string userIp)
+        {
+            throw new NotImplementedException();
+        }
+
         public UserLogRepository()
         {
             connectionString = ConfigurationManager.AppSettings["connectionString"];

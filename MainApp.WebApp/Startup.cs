@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Implementation.AnagramSolver;
 using Contracts;
-using MainApp.EF.DatabaseFirst;
 using MainApp.EF.CodeFirst;
 
 namespace MainApp.WebApp
@@ -28,6 +27,8 @@ namespace MainApp.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MainAppDatabaseContext>(options => Configuration.GetSection("MainAppDatabaseContext").Bind(options));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -35,10 +36,12 @@ namespace MainApp.WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddScoped<IAnagramSolver, AnagramSolver>();
+            services.AddTransient<IAnagramSolver, AnagramSolver>();
             services.AddScoped<IWordRepository, EFCFWordReader>();
             services.AddScoped<IUserLogRepository, EFCFUserLogRepository>();
             services.AddScoped<ICacheRepository, EFCFCacheRepository>();
+            services.AddScoped<INumOfAllowedSearchesRepository, EFCFNumOfAllowedSearchesRepository>();
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -29,7 +29,7 @@ namespace MainApp.EF.CodeFirst
                 var wordId = context.Words.Where(w => anagrams.Contains(w.Word)).Select(i => i.Id);
                 foreach (var id in wordId)
                 {
-                    CachedWords cache = new CachedWords();
+                    CachedWordsEntity cache = new CachedWordsEntity();
                     cache.Word = word;
                     cache.AnagramId = id;
                     context.CachedWords.Add(cache);

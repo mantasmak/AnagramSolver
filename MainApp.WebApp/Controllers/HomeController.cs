@@ -9,6 +9,7 @@ using MainApp.WebApp.Models;
 using Implementation.AnagramSolver;
 using Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace MainApp.WebApp.Controllers
 {
@@ -18,13 +19,17 @@ namespace MainApp.WebApp.Controllers
         IWordRepository wordRepository;
         IUserLogRepository logRepository;
         ICacheRepository cacheRepository;
+        IConfiguration configuration;
+        INumOfAllowedSearchesRepository allowedSearchesRepository;
 
-        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository)
+        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository, IConfiguration configuration, INumOfAllowedSearchesRepository allowedSearchesRepository)
         {
             this.anagramSolver = anagramSolver;
             this.wordRepository = fileWordReader;
             this.logRepository = logRepository;
             this.cacheRepository = cacheRepository;
+            this.configuration = configuration;
+            this.allowedSearchesRepository = allowedSearchesRepository;
         }
 
         public IActionResult Index(string word)

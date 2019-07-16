@@ -6,13 +6,14 @@ using System.Text;
 
 namespace MainApp.EF.CodeFirst
 {
-    public class Words
+    public class CachedWordsEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Word { get; set; }
+        public int? AnagramId { get; set; }
 
-        public ICollection<CachedWords> CachedWords { get; set; }
+        public WordsEntity Anagram { get; set; }
     }
 }

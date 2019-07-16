@@ -8,6 +8,16 @@ namespace MainApp.EF.DatabaseFirst
 {
     public class EFDBFUserLogRepository : IUserLogRepository
     {
+        public int CountUserSearchesByIp(string userIp)
+        {
+            using (MainAppDatabaseContext context = new MainAppDatabaseContext())
+            {
+                var selectUserCount = context.UserLog.Where(u => u.UserIp == userIp).Count();
+
+                return selectUserCount;
+            }
+        }
+
         public List<UserLogReport> GetUserLogReport()
         {
             bool added = false;

@@ -8,5 +8,6 @@ namespace Contracts
     {
         void Save(string ip, string word, DateTime time);
         List<UserLogReport> GetUserLogReport();
+        int CountUserSearchesByIp(string userIp);
     }
 }

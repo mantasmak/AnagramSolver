@@ -6,13 +6,13 @@ using System.Text;
 
 namespace MainApp.EF.CodeFirst
 {
-    public class UserLog
+    public class WordsEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string UserIp { get; set; }
         public string Word { get; set; }
-        public DateTime? SearchTime { get; set; }
+
+        public ICollection<CachedWordsEntity> CachedWords { get; set; }
     }
 }
