@@ -11,17 +11,17 @@ namespace MainApp.EF.CodeFirst
 {
     public class MainAppDatabaseContext : DbContext
     {
-        private IConfiguration Config { get; set; }
+        //private IConfiguration Configuration { get; set; }
 
-        public MainAppDatabaseContext()
+        public MainAppDatabaseContext(DbContextOptions dbContextOptions):base(dbContextOptions)
         {
-            Config = new ConfigurationBuilder().AddJsonFile(@"C:\Users\mantas\source\repos\MainApp\MainApp.EF.CodeFirst\config.json").Build();
+            //Configuration = configuration;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(Config["ConnectionString"]);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(Configuration.GetConnectionString("CFConnectionString"));
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,7 @@ namespace MainApp.EF.CodeFirst
                 entity.HasOne(d => d.Anagram)
                     .WithMany(p => p.CachedWords)
                     .HasForeignKey(d => d.AnagramId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_CachedWords_Words");
             });
 

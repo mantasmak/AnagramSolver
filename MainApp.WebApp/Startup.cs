@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Implementation.AnagramSolver;
 using Contracts;
 using MainApp.EF.CodeFirst;
+using Microsoft.EntityFrameworkCore;
 
 namespace MainApp.WebApp
 {
@@ -27,7 +28,7 @@ namespace MainApp.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MainAppDatabaseContext>(options => Configuration.GetSection("MainAppDatabaseContext").Bind(options));
+            services.AddDbContext<MainAppDatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CFConnectionString")));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -41,6 +42,9 @@ namespace MainApp.WebApp
             services.AddScoped<IUserLogRepository, EFCFUserLogRepository>();
             services.AddScoped<ICacheRepository, EFCFCacheRepository>();
             services.AddScoped<INumOfAllowedSearchesRepository, EFCFNumOfAllowedSearchesRepository>();
+            services.AddScoped<IWordInserter, WordsManipulationService>();
+            services.AddScoped<IWordDeleter, WordsManipulationService>();
+            services.AddScoped<IWordUpdater, WordsManipulationService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

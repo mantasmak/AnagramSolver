@@ -18,6 +18,11 @@ namespace Implementation.AnagramSolver
             connectionString = ConfigurationManager.AppSettings["connectionString"];
         }
 
+        public void Delete(string word)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Find(int wordId)
         {
             string searchedWord = string.Empty;
@@ -105,6 +110,21 @@ namespace Implementation.AnagramSolver
                 connection.Close();
             }
             return searchedWords;
+        }
+
+        public void Save(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(string currentWord, string updatedWord)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool WordExists(string word)
+        {
+            throw new NotImplementedException();
         }
     }
 }

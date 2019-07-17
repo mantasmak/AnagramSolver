@@ -8,6 +8,11 @@ namespace MainApp.EF.DatabaseFirst
 {
     public class EFDBFWordReader : IWordRepository
     {
+        public void Delete(string word)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Find(int wordId)
         {
             string word;
@@ -50,6 +55,21 @@ namespace MainApp.EF.DatabaseFirst
                 words.AddRange(query);
             }
             return words;
+        }
+
+        public void Save(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(string currentWord, string updatedWord)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool WordExists(string word)
+        {
+            throw new NotImplementedException();
         }
     }
 }

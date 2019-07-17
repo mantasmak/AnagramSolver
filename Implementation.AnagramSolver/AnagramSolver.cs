@@ -7,6 +7,7 @@ using System.Collections;
 using System.Linq;
 using System.Diagnostics;
 using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Implementation.AnagramSolver
 {
@@ -22,12 +23,18 @@ namespace Implementation.AnagramSolver
 
         private INumOfAllowedSearchesRepository AllowedSearches { get; set; }
 
-        public AnagramSolver(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches)
+        private IConfiguration Configuration { get; set; }
+
+        private IUserLogRepository UserLog { get; set; }
+
+        public AnagramSolver(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches, IConfiguration configuration, IUserLogRepository userLog)
         {
-            MaxListLen = Int32.Parse(ConfigurationManager.AppSettings["maxListLen"]);
             Reader = wordRepository;
             Cache = cacheRepository;
             AllowedSearches = allowedSearches;
+            Configuration = configuration;
+            MaxListLen = Int32.Parse(Configuration["MaxListLen"]);
+            UserLog = userLog;
         }
 
         public IList<string> GetAnagrams(string word, string ip)
@@ -37,7 +44,7 @@ namespace Implementation.AnagramSolver
                 AllowedSearches.SaveNewUser(ip, allowedSearches);
             }
 
-            if (AllowedSearches.GetAmountOfSearches(ip) <= allowedSearches)
+            if (AllowedSearches.GetAmountOfSearches(ip) >= UserLog.CountUserSearchesByIp(ip))
             {
                 var anagrams = Cache.GetCachedAnagrams(word);
                 if (anagrams.Count == 0)
@@ -45,9 +52,8 @@ namespace Implementation.AnagramSolver
                     anagrams = Reader.FindAnagrams(word);
                     Cache.Save(word, anagrams);
                 }
-                UserLogRepository userLog = new UserLogRepository();
-                userLog.Save(ip, word, DateTime.Now);
-                return anagrams;
+                UserLog.Save(ip, word, DateTime.Now);
+                return anagrams.Take(MaxListLen).ToList();
             }
             else
             {

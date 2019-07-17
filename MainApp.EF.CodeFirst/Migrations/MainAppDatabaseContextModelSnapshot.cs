@@ -19,7 +19,7 @@ namespace MainApp.EF.CodeFirst.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MainApp.EF.CodeFirst.CachedWords", b =>
+            modelBuilder.Entity("MainApp.EF.CodeFirst.CachedWordsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace MainApp.EF.CodeFirst.Migrations
                     b.ToTable("CachedWords");
                 });
 
-            modelBuilder.Entity("MainApp.EF.CodeFirst.NumOfAllowedSearches", b =>
+            modelBuilder.Entity("MainApp.EF.CodeFirst.NumOfAllowedSearchesEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace MainApp.EF.CodeFirst.Migrations
                     b.ToTable("NumOfAllowedSearches");
                 });
 
-            modelBuilder.Entity("MainApp.EF.CodeFirst.UserLog", b =>
+            modelBuilder.Entity("MainApp.EF.CodeFirst.UserLogEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,7 +73,7 @@ namespace MainApp.EF.CodeFirst.Migrations
                     b.ToTable("UserLog");
                 });
 
-            modelBuilder.Entity("MainApp.EF.CodeFirst.Words", b =>
+            modelBuilder.Entity("MainApp.EF.CodeFirst.WordsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,12 +87,13 @@ namespace MainApp.EF.CodeFirst.Migrations
                     b.ToTable("Words");
                 });
 
-            modelBuilder.Entity("MainApp.EF.CodeFirst.CachedWords", b =>
+            modelBuilder.Entity("MainApp.EF.CodeFirst.CachedWordsEntity", b =>
                 {
-                    b.HasOne("MainApp.EF.CodeFirst.Words", "Anagram")
+                    b.HasOne("MainApp.EF.CodeFirst.WordsEntity", "Anagram")
                         .WithMany("CachedWords")
                         .HasForeignKey("AnagramId")
-                        .HasConstraintName("FK_CachedWords_Words");
+                        .HasConstraintName("FK_CachedWords_Words")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -21,8 +21,12 @@ namespace MainApp.WebApp.Controllers
         ICacheRepository cacheRepository;
         IConfiguration configuration;
         INumOfAllowedSearchesRepository allowedSearchesRepository;
+        IWordInserter wordinserter;
+        IWordDeleter wordDeleter;
+        IWordUpdater wordUpdater;
 
-        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository, IConfiguration configuration, INumOfAllowedSearchesRepository allowedSearchesRepository)
+
+        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository, IConfiguration configuration, INumOfAllowedSearchesRepository allowedSearchesRepository, IWordInserter wordinserter, IWordDeleter wordDeleter, IWordUpdater wordUpdater)
         {
             this.anagramSolver = anagramSolver;
             this.wordRepository = fileWordReader;
@@ -30,6 +34,9 @@ namespace MainApp.WebApp.Controllers
             this.cacheRepository = cacheRepository;
             this.configuration = configuration;
             this.allowedSearchesRepository = allowedSearchesRepository;
+            this.wordinserter = wordinserter;
+            this.wordDeleter = wordDeleter;
+            this.wordUpdater = wordUpdater;
         }
 
         public IActionResult Index(string word)
@@ -89,6 +96,61 @@ namespace MainApp.WebApp.Controllers
             List<UserLogReport> reports = logRepository.GetUserLogReport();
 
             return View(reports);
+        }
+
+        [HttpGet]
+        public IActionResult ManipulateWord()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddWord(WordManipulationViewModel input)
+        {
+            if(wordinserter.AddWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
+            {
+                return RedirectToAction("ManipulateWordResult", new { message = "Word added succesfully" });
+            }
+            else
+            {
+                return RedirectToAction("ManipulateWordResult", new { message = "Could not add word" });
+            }
+
+        }
+
+        public IActionResult ManipulateWordResult(string message)
+        {
+            ManipulateWordResultViewModel model = new ManipulateWordResultViewModel();
+            model.Message = message;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteWord(WordManipulationViewModel input)
+        {
+            if(wordDeleter.RemoveWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
+            {
+                return RedirectToAction("ManipulateWordResult", new { message = "Word deleted succesfully" });
+            }
+            else
+            {
+                return RedirectToAction("ManipulateWordResult", new { message = "Could not delete word" });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CorrectWord(WordManipulationViewModel input)
+        {
+            if(wordUpdater.UpdateWord(input.Word, input.WordCorrection, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
+            {
+                return RedirectToAction("ManipulateWordResult", new { message = "Word corrected succesfully" });
+            }
+            else
+            {
+                return RedirectToAction("ManipulateWordResult", new { message = "Could not correct word" });
+            }
         }
 
         public IActionResult About()

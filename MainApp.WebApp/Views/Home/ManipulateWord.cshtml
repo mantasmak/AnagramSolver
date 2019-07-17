@@ -1,0 +1,48 @@
+﻿@model WordManipulationViewModel
+@{
+    ViewData["Title"] = "ManipulateWord";
+}
+
+<h2>AddWord</h2>
+
+<form asp-action="AddWord" method="post">
+    <div>
+        <input asp-for="Word" />
+        <span asp-validation-for="Word"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>
+
+<h2>DeleteWord</h2>
+
+<form asp-action="DeleteWord" method="post">
+    <div>
+        <input asp-for="Word" />
+        <span asp-validation-for="Word"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>
+
+<h2>CorrectWord</h2>
+
+<form asp-action="CorrectWord" method="post">
+    <div>
+        <input asp-for="Word" />
+        <span asp-validation-for="Word"></span>
+    </div>
+
+    <div>
+        <input asp-for="WordCorrection" />
+        <span asp-validation-for="WordCorrection"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>

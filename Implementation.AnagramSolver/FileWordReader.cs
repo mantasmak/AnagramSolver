@@ -89,5 +89,30 @@ namespace Implementation.AnagramSolver
 
             return words.ToList<Word>();
         }
+
+        public void Save(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool WordExists(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(string word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(string currentWord, string updatedWord)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

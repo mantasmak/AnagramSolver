@@ -13,5 +13,13 @@ namespace Contracts
         IList<string> FindAnagrams(string word);
 
         IList<string> GetAllWords();
+
+        void Save(string word);
+
+        void Delete(string word);
+
+        void Update(string currentWord, string updatedWord);
+
+        bool WordExists(string word);
     }
 }

@@ -14,27 +14,20 @@ namespace DatabaseConsoleApp
     {
         static void Main(string[] args)
         {
-            bool select = true;
-            if (select)
+            if (true)
             {
-                EFCFCacheRepository efc = new EFCFCacheRepository();
-                List<string> listc = efc.GetCachedAnagrams("dangus").ToList();
-                foreach (var el in listc)
-                {
-                    Console.WriteLine(el);
-                }
-             /**
-                using (var conn = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]))
-                using (var command = new SqlCommand("dbo.TableDelete", conn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                })
-                {
-                    command.Parameters.Add(new SqlParameter("Table", "dbo.CachedWords"));
-                    conn.Open();
-                    command.ExecuteNonQuery();
-                }
-            **/
+                /**
+                   using (var conn = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]))
+                   using (var command = new SqlCommand("dbo.TableDelete", conn)
+                   {
+                       CommandType = CommandType.StoredProcedure
+                   })
+                   {
+                       command.Parameters.Add(new SqlParameter("Table", "dbo.CachedWords"));
+                       conn.Open();
+                       command.ExecuteNonQuery();
+                   }
+               **/
                 //SelectWords();
             }
             else

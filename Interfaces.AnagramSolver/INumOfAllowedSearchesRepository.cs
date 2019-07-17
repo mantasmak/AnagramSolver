@@ -9,5 +9,7 @@ namespace Contracts
         int GetAmountOfSearches(string userIp);
         bool CheckIfExists(string userIp);
         void SaveNewUser(string userIp, int amount);
+        bool IncrementNumOfAllowedSearches(string ip);
+        bool DecrementNumOfAllowedSearches(string ip);
     }
 }
