@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Contracts
 {
-    public interface IWordUpdater
+    public interface IWordsManipulator
     {
+        bool AddWord(string word, string userIp);
+        bool RemoveWord(string word, string userIp);
         bool UpdateWord(string currentWord, string updatedWord, string userIp);
     }
 }

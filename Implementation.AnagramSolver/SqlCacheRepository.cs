@@ -7,11 +7,11 @@ using Contracts;
 
 namespace Implementation.AnagramSolver
 {
-    public class CacheRepository : ICacheRepository
+    public class SqlCacheRepository : ICacheRepository
     {
         private string connectionString;
 
-        public CacheRepository()
+        public SqlCacheRepository()
         {
             connectionString = ConfigurationManager.AppSettings["connectionString"];
         }

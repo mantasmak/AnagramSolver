@@ -15,28 +15,24 @@ namespace MainApp.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        IAnagramSolver anagramSolver;
+        IAnagramSolver anagramService;
         IWordRepository wordRepository;
         IUserLogRepository logRepository;
         ICacheRepository cacheRepository;
         IConfiguration configuration;
         INumOfAllowedSearchesRepository allowedSearchesRepository;
-        IWordInserter wordinserter;
-        IWordDeleter wordDeleter;
-        IWordUpdater wordUpdater;
+        IWordsManipulator wordManipulator;
 
 
-        public HomeController(IAnagramSolver anagramSolver, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository, IConfiguration configuration, INumOfAllowedSearchesRepository allowedSearchesRepository, IWordInserter wordinserter, IWordDeleter wordDeleter, IWordUpdater wordUpdater)
+        public HomeController(IAnagramSolver anagramService, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository, IConfiguration configuration, INumOfAllowedSearchesRepository allowedSearchesRepository, IWordsManipulator wordManipulator)
         {
-            this.anagramSolver = anagramSolver;
+            this.anagramService = anagramService;
             this.wordRepository = fileWordReader;
             this.logRepository = logRepository;
             this.cacheRepository = cacheRepository;
             this.configuration = configuration;
             this.allowedSearchesRepository = allowedSearchesRepository;
-            this.wordinserter = wordinserter;
-            this.wordDeleter = wordDeleter;
-            this.wordUpdater = wordUpdater;
+            this.wordManipulator = wordManipulator;
         }
 
         public IActionResult Index(string word)
@@ -48,7 +44,7 @@ namespace MainApp.WebApp.Controllers
             WordViewModel wordViewModel = new WordViewModel();
             wordViewModel.Name = word;
             string ip = HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString();
-            wordViewModel.Anagrams = anagramSolver.GetAnagrams(word, ip);
+            wordViewModel.Anagrams = anagramService.GetAnagrams(word, ip);
 
             return View(wordViewModel);
         }
@@ -108,7 +104,7 @@ namespace MainApp.WebApp.Controllers
         [HttpPost]
         public IActionResult AddWord(WordManipulationViewModel input)
         {
-            if(wordinserter.AddWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
+            if(wordManipulator.AddWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
             {
                 return RedirectToAction("ManipulateWordResult", new { message = "Word added succesfully" });
             }
@@ -130,7 +126,7 @@ namespace MainApp.WebApp.Controllers
         [HttpPost]
         public IActionResult DeleteWord(WordManipulationViewModel input)
         {
-            if(wordDeleter.RemoveWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
+            if(wordManipulator.RemoveWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
             {
                 return RedirectToAction("ManipulateWordResult", new { message = "Word deleted succesfully" });
             }
@@ -143,7 +139,7 @@ namespace MainApp.WebApp.Controllers
         [HttpPost]
         public IActionResult CorrectWord(WordManipulationViewModel input)
         {
-            if(wordUpdater.UpdateWord(input.Word, input.WordCorrection, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
+            if(wordManipulator.UpdateWord(input.Word, input.WordCorrection, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
             {
                 return RedirectToAction("ManipulateWordResult", new { message = "Word corrected succesfully" });
             }

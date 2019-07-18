@@ -7,7 +7,7 @@ using Contracts;
 
 namespace Implementation.AnagramSolver
 {
-    public class UserLogRepository : IUserLogRepository
+    public class SqlUserLogRepository : IUserLogRepository
     {
         private string connectionString;
 
@@ -16,7 +16,7 @@ namespace Implementation.AnagramSolver
             throw new NotImplementedException();
         }
 
-        public UserLogRepository()
+        public SqlUserLogRepository()
         {
             connectionString = ConfigurationManager.AppSettings["connectionString"];
         }

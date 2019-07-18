@@ -29,7 +29,7 @@ namespace MainApp.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MainAppDatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CFConnectionString")));
-
+            services.Configure<AnagramServiceOptions>(Configuration.GetSection("AnagramSolver"));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -37,14 +37,12 @@ namespace MainApp.WebApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddTransient<IAnagramSolver, AnagramSolver>();
-            services.AddScoped<IWordRepository, EFCFWordReader>();
+            services.AddTransient<IAnagramSolver, AnagramService>();
+            services.AddScoped<IWordRepository, EFCFWordRepository>();
             services.AddScoped<IUserLogRepository, EFCFUserLogRepository>();
             services.AddScoped<ICacheRepository, EFCFCacheRepository>();
             services.AddScoped<INumOfAllowedSearchesRepository, EFCFNumOfAllowedSearchesRepository>();
-            services.AddScoped<IWordInserter, WordsManipulationService>();
-            services.AddScoped<IWordDeleter, WordsManipulationService>();
-            services.AddScoped<IWordUpdater, WordsManipulationService>();
+            services.AddScoped<IWordsManipulator, WordsManipulationService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

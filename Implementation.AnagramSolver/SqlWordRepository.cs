@@ -9,11 +9,11 @@ using System.Collections.Specialized;
 
 namespace Implementation.AnagramSolver
 {
-    public class DatabaseWordReader : IWordRepository
+    public class SqlWordRepository : IWordRepository
     {
         private string connectionString;
 
-        public DatabaseWordReader()
+        public SqlWordRepository()
         {
             connectionString = ConfigurationManager.AppSettings["connectionString"];
         }

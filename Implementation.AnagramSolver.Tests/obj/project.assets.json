@@ -1591,6 +1591,19 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "NSubstitute/4.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Castle.Core": "4.4.0",
+          "System.Threading.Tasks.Extensions": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/NSubstitute.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NSubstitute.dll": {}
+        }
+      },
       "NuGet.Frameworks/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -3699,6 +3712,19 @@
         },
         "runtime": {
           "bin/placeholder/Contracts.dll": {}
+        }
+      },
+      "GenericsExercise/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "NUnit": "3.12.0"
+        },
+        "compile": {
+          "bin/placeholder/GenericsExercise.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GenericsExercise.dll": {}
         }
       },
       "Implementation.AnagramSolver/1.0.0": {
@@ -6015,6 +6041,25 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "NSubstitute/4.2.1": {
+      "sha512": "CqQuOU06ftAKrTV7Op/s0hdSII4RP6SNjP/XT1+2oEC6EqwYLXOfek/p+SEuHgaH8WNwEHWIYjsrUV9oSOIOXw==",
+      "type": "package",
+      "path": "nsubstitute/4.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/NSubstitute.dll",
+        "lib/net45/NSubstitute.xml",
+        "lib/net46/NSubstitute.dll",
+        "lib/net46/NSubstitute.xml",
+        "lib/netstandard1.3/NSubstitute.dll",
+        "lib/netstandard1.3/NSubstitute.xml",
+        "lib/netstandard2.0/NSubstitute.dll",
+        "lib/netstandard2.0/NSubstitute.xml",
+        "nsubstitute.4.2.1.nupkg.sha512",
+        "nsubstitute.nuspec"
       ]
     },
     "NuGet.Frameworks/4.7.0": {
@@ -11168,6 +11213,11 @@
       "path": "../Interfaces.AnagramSolver/Contracts.csproj",
       "msbuildProject": "../Interfaces.AnagramSolver/Contracts.csproj"
     },
+    "GenericsExercise/1.0.0": {
+      "type": "project",
+      "path": "../GenericsExercise/GenericsExercise.csproj",
+      "msbuildProject": "../GenericsExercise/GenericsExercise.csproj"
+    },
     "Implementation.AnagramSolver/1.0.0": {
       "type": "project",
       "path": "../Implementation.AnagramSolver/Implementation.AnagramSolver.csproj",
@@ -11191,6 +11241,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "GenericsExercise >= 1.0.0",
       "Implementation.AnagramSolver >= 1.0.0",
       "MainApp.WebApp >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Abstractions >= 2.2.0",
@@ -11199,6 +11250,7 @@
       "Microsoft.NET.Test.Sdk >= 15.8.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "Moq >= 4.12.0",
+      "NSubstitute >= 4.2.1",
       "NUnit3TestAdapter >= 3.13.0",
       "nunit >= 3.12.0"
     ]
@@ -11233,6 +11285,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "C:\\Users\\mantas\\source\\repos\\MainApp\\GenericsExercise\\GenericsExercise.csproj": {
+              "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\GenericsExercise\\GenericsExercise.csproj"
+            },
             "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj": {
               "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj"
             },
@@ -11276,6 +11331,10 @@
           "Moq": {
             "target": "Package",
             "version": "[4.12.0, )"
+          },
+          "NSubstitute": {
+            "target": "Package",
+            "version": "[4.2.1, )"
           },
           "NUnit3TestAdapter": {
             "target": "Package",

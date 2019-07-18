@@ -8,14 +8,15 @@ using System.Linq;
 using System.Diagnostics;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Implementation.AnagramSolver
 {
-    public class AnagramSolver : IAnagramSolver
+    public class AnagramService : IAnagramSolver
     {
         private readonly int allowedSearches = 2;
 
-        public int MaxListLen { get; set; }
+        private readonly AnagramServiceOptions Options;
         
         private IWordRepository Reader { get; set; }
 
@@ -23,17 +24,14 @@ namespace Implementation.AnagramSolver
 
         private INumOfAllowedSearchesRepository AllowedSearches { get; set; }
 
-        private IConfiguration Configuration { get; set; }
-
         private IUserLogRepository UserLog { get; set; }
 
-        public AnagramSolver(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches, IConfiguration configuration, IUserLogRepository userLog)
+        public AnagramService(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches, IOptionsMonitor<AnagramServiceOptions> options, IUserLogRepository userLog)
         {
             Reader = wordRepository;
             Cache = cacheRepository;
             AllowedSearches = allowedSearches;
-            Configuration = configuration;
-            MaxListLen = Int32.Parse(Configuration["MaxListLen"]);
+            Options = options.CurrentValue;
             UserLog = userLog;
         }
 
@@ -53,7 +51,7 @@ namespace Implementation.AnagramSolver
                     Cache.Save(word, anagrams);
                 }
                 UserLog.Save(ip, word, DateTime.Now);
-                return anagrams.Take(MaxListLen).ToList();
+                return anagrams.Take(Options.MaxListLen).ToList();
             }
             else
             {

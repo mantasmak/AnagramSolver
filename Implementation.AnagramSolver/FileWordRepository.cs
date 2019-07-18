@@ -8,16 +8,16 @@ using System.Configuration;
 
 namespace Implementation.AnagramSolver
 {
-    public class FileWordReader : IWordRepository
+    public class FileWordRepository : IWordRepository
     {
         private string Path { get; set; }
 
-        public FileWordReader()
+        public FileWordRepository()
         {
             Path = ConfigurationManager.AppSettings["filePath"];
         }
 
-        public FileWordReader(string path)
+        public FileWordRepository(string path)
         {
             Path = path;
         }

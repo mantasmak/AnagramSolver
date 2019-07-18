@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MainApp.EF.DatabaseFirst
 {
-    public class EFDBFWordReader : IWordRepository
+    public class EFDBFWordRepository : IWordRepository
     {
         public void Delete(string word)
         {

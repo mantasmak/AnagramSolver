@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Implementation.AnagramSolver
 {
-    public class WordsManipulationService : IWordInserter, IWordDeleter, IWordUpdater
+    public class WordsManipulationService : IWordsManipulator
     {
         private IWordRepository WordRepository { get; set; }
 

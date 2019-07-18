@@ -7,11 +7,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace MainApp.EF.CodeFirst
 {
-    public class EFCFWordReader : IWordRepository
+    public class EFCFWordRepository : IWordRepository
     {
         MainAppDatabaseContext context;
 
-        public EFCFWordReader(MainAppDatabaseContext context)
+        public EFCFWordRepository(MainAppDatabaseContext context)
         {
             this.context = context;
         }
