@@ -32,8 +32,8 @@ namespace DatabaseConsoleApp
             }
             else
             {
-                FileWordReader fileWordReader = new FileWordReader();
-                var wordsToInsert = fileWordReader.GetAllWords().ToList();
+                //FileWordReader fileWordReader = new FileWordReader();
+                //var wordsToInsert = fileWordReader.GetAllWords().ToList();
 
                 try
                 {

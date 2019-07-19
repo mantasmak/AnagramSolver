@@ -5,6 +5,7 @@ using Contracts;
 using System.IO;
 using System.Linq;
 using System.Configuration;
+using Microsoft.IdentityModel.Protocols;
 
 namespace Implementation.AnagramSolver
 {

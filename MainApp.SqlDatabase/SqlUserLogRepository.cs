@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using Contracts;
 
@@ -35,7 +36,7 @@ namespace Implementation.AnagramSolver
             }
         }
 
-        public List<UserLogReport> GetUserLogReport()
+        public IList<UserLogReport> GetUserLogReport()
         {
             bool added = false;
             List<UserLogReport> userLogReports = new List<UserLogReport>();

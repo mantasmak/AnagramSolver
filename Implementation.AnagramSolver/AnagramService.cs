@@ -26,12 +26,12 @@ namespace Implementation.AnagramSolver
 
         private IUserLogRepository UserLog { get; set; }
 
-        public AnagramService(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches, IOptionsMonitor<AnagramServiceOptions> options, IUserLogRepository userLog)
+        public AnagramService(IWordRepository wordRepository, ICacheRepository cacheRepository, INumOfAllowedSearchesRepository allowedSearches, IOptions<AnagramServiceOptions> options, IUserLogRepository userLog)
         {
             Reader = wordRepository;
             Cache = cacheRepository;
             AllowedSearches = allowedSearches;
-            Options = options.CurrentValue;
+            Options = options.Value;
             UserLog = userLog;
         }
 

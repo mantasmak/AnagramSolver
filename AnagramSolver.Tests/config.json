@@ -1,0 +1,9 @@
+{
+  "testFilePath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver.Tests\\zodynasTest.txt",
+  "notExistingFilePath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver.Tests\\notExistingFile.txt",
+  "testWord1": "dangus",
+  "testWord2": "laidas",
+  "testWord3": "alus",
+  "maxListLength1": "1",
+  "maxListLength2": "2"
+}

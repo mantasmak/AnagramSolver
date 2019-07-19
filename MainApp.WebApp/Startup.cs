@@ -43,6 +43,8 @@ namespace MainApp.WebApp
             services.AddScoped<ICacheRepository, EFCFCacheRepository>();
             services.AddScoped<INumOfAllowedSearchesRepository, EFCFNumOfAllowedSearchesRepository>();
             services.AddScoped<IWordsManipulator, WordsManipulationService>();
+            services.AddScoped<IUserLogService, UserLogService>();
+            services.AddScoped<IWordService, WordService>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

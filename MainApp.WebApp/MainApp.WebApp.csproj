@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Implementation.AnagramSolver\Implementation.AnagramSolver.csproj" />
+    <ProjectReference Include="..\Implementation.AnagramSolver\Services.csproj" />
     <ProjectReference Include="..\Interfaces.AnagramSolver\Contracts.csproj" />
     <ProjectReference Include="..\MainApp.EF.CodeFirst\MainApp.EF.CodeFirst.csproj" />
     <ProjectReference Include="..\MainApp.EF.DatabaseFirst\MainApp.EF.DatabaseFirst.csproj" />

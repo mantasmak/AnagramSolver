@@ -4918,23 +4918,6 @@
           "bin/placeholder/Contracts.dll": {}
         }
       },
-      "Implementation.AnagramSolver/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.2",
-        "dependencies": {
-          "Contracts": "1.0.0",
-          "MainApp.EF.CodeFirst": "1.0.0",
-          "MainApp.EF.DatabaseFirst": "1.0.0",
-          "System.Configuration.ConfigurationManager": "4.5.0",
-          "System.Data.SqlClient": "4.6.1"
-        },
-        "compile": {
-          "bin/placeholder/Implementation.AnagramSolver.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Implementation.AnagramSolver.dll": {}
-        }
-      },
       "MainApp.EF.CodeFirst/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -4968,6 +4951,23 @@
         },
         "runtime": {
           "bin/placeholder/MainApp.EF.DatabaseFirst.dll": {}
+        }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Contracts": "1.0.0",
+          "MainApp.EF.CodeFirst": "1.0.0",
+          "MainApp.EF.DatabaseFirst": "1.0.0",
+          "System.Configuration.ConfigurationManager": "4.5.0",
+          "System.Data.SqlClient": "4.6.1"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
         }
       }
     }
@@ -13426,11 +13426,6 @@
       "path": "../Interfaces.AnagramSolver/Contracts.csproj",
       "msbuildProject": "../Interfaces.AnagramSolver/Contracts.csproj"
     },
-    "Implementation.AnagramSolver/1.0.0": {
-      "type": "project",
-      "path": "../Implementation.AnagramSolver/Implementation.AnagramSolver.csproj",
-      "msbuildProject": "../Implementation.AnagramSolver/Implementation.AnagramSolver.csproj"
-    },
     "MainApp.EF.CodeFirst/1.0.0": {
       "type": "project",
       "path": "../MainApp.EF.CodeFirst/MainApp.EF.CodeFirst.csproj",
@@ -13440,19 +13435,24 @@
       "type": "project",
       "path": "../MainApp.EF.DatabaseFirst/MainApp.EF.DatabaseFirst.csproj",
       "msbuildProject": "../MainApp.EF.DatabaseFirst/MainApp.EF.DatabaseFirst.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Implementation.AnagramSolver/Services.csproj",
+      "msbuildProject": "../Implementation.AnagramSolver/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "Contracts >= 1.0.0",
-      "Implementation.AnagramSolver >= 1.0.0",
       "MainApp.EF.CodeFirst >= 1.0.0",
       "MainApp.EF.DatabaseFirst >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.3",
-      "Newtonsoft.Json >= 12.0.2"
+      "Newtonsoft.Json >= 12.0.2",
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -13485,8 +13485,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj": {
-              "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj"
+            "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Services.csproj": {
+              "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Services.csproj"
             },
             "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Contracts.csproj": {
               "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Interfaces.AnagramSolver\\Contracts.csproj"

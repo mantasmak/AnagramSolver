@@ -16,23 +16,17 @@ namespace MainApp.WebApp.Controllers
     public class HomeController : Controller
     {
         IAnagramSolver anagramService;
-        IWordRepository wordRepository;
-        IUserLogRepository logRepository;
-        ICacheRepository cacheRepository;
-        IConfiguration configuration;
-        INumOfAllowedSearchesRepository allowedSearchesRepository;
         IWordsManipulator wordManipulator;
+        IUserLogService userLogService;
+        IWordService wordService;
 
 
-        public HomeController(IAnagramSolver anagramService, IWordRepository fileWordReader, IUserLogRepository logRepository, ICacheRepository cacheRepository, IConfiguration configuration, INumOfAllowedSearchesRepository allowedSearchesRepository, IWordsManipulator wordManipulator)
+        public HomeController(IAnagramSolver anagramService, IWordsManipulator wordManipulator, IUserLogService userLogService, IWordService wordService)
         {
             this.anagramService = anagramService;
-            this.wordRepository = fileWordReader;
-            this.logRepository = logRepository;
-            this.cacheRepository = cacheRepository;
-            this.configuration = configuration;
-            this.allowedSearchesRepository = allowedSearchesRepository;
             this.wordManipulator = wordManipulator;
+            this.userLogService = userLogService;
+            this.wordService = wordService;
         }
 
         public IActionResult Index(string word)
@@ -52,7 +46,7 @@ namespace MainApp.WebApp.Controllers
         public IActionResult ListOfWords(int startIndex, int pageSize = 100)
         {
             WordContainerViewModel wordContainerViewModel = new WordContainerViewModel();
-            var wordsToDisplay = wordRepository.GetAllWords()
+            var wordsToDisplay = wordService.GetAllWords()
                 .Skip(startIndex)
                 .Take(pageSize)
                 .ToList();
@@ -82,14 +76,14 @@ namespace MainApp.WebApp.Controllers
         public IActionResult SearchWord(string searchString)
         {
             ViewData["searchString"] = searchString;
-            List<string> anagrams = wordRepository.Find(searchString).ToList();
+            List<string> anagrams = wordService.RecognizeWord(searchString).ToList();
 
             return View(anagrams);
         }
 
         public IActionResult UserLogs()
         {
-            List<UserLogReport> reports = logRepository.GetUserLogReport();
+            List<UserLogReport> reports = userLogService.GenerateUserLogReport();
 
             return View(reports);
         }

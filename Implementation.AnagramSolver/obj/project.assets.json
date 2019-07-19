@@ -4840,9 +4840,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj",
-      "projectName": "Implementation.AnagramSolver",
-      "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Implementation.AnagramSolver.csproj",
+      "projectUniqueName": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Services.csproj",
+      "projectName": "Services",
+      "projectPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\Services.csproj",
       "packagesPath": "C:\\Users\\mantas\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mantas\\source\\repos\\MainApp\\Implementation.AnagramSolver\\obj\\",
       "projectStyle": "PackageReference",
