@@ -6,6 +6,9 @@ using NUnit.Framework;
 using NSubstitute;
 using MainApp.WebApp.Controllers;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Implementation.AnagramSolver.Tests.Controllers
 {
@@ -14,13 +17,20 @@ namespace Implementation.AnagramSolver.Tests.Controllers
         IAnagramSolver anagramService;
         IWordService wordService;
         DataController dataController;
+        HttpResponse httpResponse;
+        HttpContext httpContext;
+        ITempDataDictionary tempData;
 
         [SetUp]
         public void Setup()
         {
             anagramService = Substitute.For<IAnagramSolver>();
             wordService = Substitute.For<IWordService>();
-            dataController = new DataController(anagramService, wordService);
+            httpResponse = Substitute.For<HttpResponse>();
+            httpContext = Substitute.For<HttpContext>();
+            tempData = Substitute.For<ITempDataDictionary>();
+            dataController = new DataController(anagramService, wordService) { TempData = tempData };
+            dataController.ControllerContext = new ControllerContext() { HttpContext = httpContext };
         }
 
         [Test]
@@ -45,6 +55,10 @@ namespace Implementation.AnagramSolver.Tests.Controllers
             string ip = "107.0.0.1";
             List<string> anagrams = new List<string> { "dugnas", "gandus" };
             string expected = JsonConvert.SerializeObject(anagrams);
+            var headerDictionary = new HeaderDictionary();
+            httpResponse.Headers.Returns(headerDictionary);
+            httpContext.Response.Returns(httpResponse);
+            httpContext.Connection.LocalIpAddress.Returns(new System.Net.IPAddress(new Byte[] { 107, 0, 0, 1 }));
 
             anagramService.GetAnagrams(word, ip).Returns(anagrams);
 

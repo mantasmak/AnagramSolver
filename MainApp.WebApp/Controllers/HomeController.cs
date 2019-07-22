@@ -100,11 +100,11 @@ namespace MainApp.WebApp.Controllers
         {
             if(wordManipulator.AddWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
             {
-                return RedirectToAction("ManipulateWordResult", new { message = "Word added succesfully" });
+                return RedirectToAction("ManipulateWordResult", new { message = $"Word '{input.Word}' added succesfully" });
             }
             else
             {
-                return RedirectToAction("ManipulateWordResult", new { message = "Could not add word" });
+                return RedirectToAction("ManipulateWordResult", new { message = $"Could not add word '{input.Word}'" });
             }
 
         }
@@ -122,11 +122,11 @@ namespace MainApp.WebApp.Controllers
         {
             if(wordManipulator.RemoveWord(input.Word, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
             {
-                return RedirectToAction("ManipulateWordResult", new { message = "Word deleted succesfully" });
+                return RedirectToAction("ManipulateWordResult", new { message = $"Word '{input.Word}' deleted succesfully" });
             }
             else
             {
-                return RedirectToAction("ManipulateWordResult", new { message = "Could not delete word" });
+                return RedirectToAction("ManipulateWordResult", new { message = $"Could not delete word '{input.Word}'" });
             }
         }
 
@@ -135,11 +135,11 @@ namespace MainApp.WebApp.Controllers
         {
             if(wordManipulator.UpdateWord(input.Word, input.WordCorrection, HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString()))
             {
-                return RedirectToAction("ManipulateWordResult", new { message = "Word corrected succesfully" });
+                return RedirectToAction("ManipulateWordResult", new { message = $"Word '{input.Word}' corrected succesfully" });
             }
             else
             {
-                return RedirectToAction("ManipulateWordResult", new { message = "Could not correct word" });
+                return RedirectToAction("ManipulateWordResult", new { message = $"Could not correct word '{input.Word}'" });
             }
         }
 
