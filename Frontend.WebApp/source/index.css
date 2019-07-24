@@ -1,0 +1,19 @@
+.navbar-logo{
+    width: 40px;
+}
+
+.logo{
+    width: 100px;
+}
+
+.vertical-center{
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.custom-text-input{
+    margin: 0 auto;
+    float: none;
+    width: 25%;
+}

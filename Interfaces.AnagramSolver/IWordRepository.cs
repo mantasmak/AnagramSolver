@@ -18,8 +18,14 @@ namespace Contracts
 
         void Delete(string word);
 
+        void Delete(int id);
+
         void Update(string currentWord, string updatedWord);
 
+        void Update(int id, string updatedWord);
+
         bool WordExists(string word);
+
+        bool WordExists(int id);
     }
 }

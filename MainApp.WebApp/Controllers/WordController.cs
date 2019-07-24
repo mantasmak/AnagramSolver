@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Contracts;
+using Microsoft.AspNetCore.Cors;
 
 namespace MainApp.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     public class WordController : ControllerBase
     {
         IWordService wordService;
@@ -33,9 +35,15 @@ namespace MainApp.WebApp.Controllers
                 .ToList();
         }
 
+        [HttpGet]
+        public IEnumerable<string> Get(string subString)
+        {
+            return wordService.RecognizeWord(subString);
+        }
+
         // POST: api/Word
         [HttpPost]
-        public void Post(string value)
+        public void Post([FromBody] string value)
         {
             string ip = HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
             wordsManipulationService.AddWord(value, ip);
@@ -45,12 +53,16 @@ namespace MainApp.WebApp.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            string ip = HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            wordsManipulationService.UpdateWord(id, value, ip);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            string ip = HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            wordsManipulationService.RemoveWord(id, ip);
         }
     }
 }

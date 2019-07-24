@@ -22,7 +22,14 @@ namespace MainApp.EF.CodeFirst
 
             context.Words.Remove(wordToDelete);
             context.SaveChanges();
+        }
 
+        public void Delete(int id)
+        {
+            var wordToDelete = context.Words.FirstOrDefault(w => w.Id == id);
+
+            context.Words.Remove(wordToDelete);
+            context.SaveChanges();
         }
 
         public string Find(int wordId)
@@ -79,9 +86,33 @@ namespace MainApp.EF.CodeFirst
             context.SaveChanges();
         }
 
+        public void Update(int id, string word)
+        {
+            var wordToUpdate = context.Words.FirstOrDefault(w => w.Id == id);
+
+            wordToUpdate.Word = word;
+
+            context.Words.Update(wordToUpdate);
+            context.SaveChanges();
+        }
+
         public bool WordExists(string word)
         {
             var selectWord = context.Words.Where(w => w.Word == word);
+
+            if (selectWord.Any())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool WordExists(int id)
+        {
+            var selectWord = context.Words.Where(w => w.Id == id);
 
             if (selectWord.Any())
             {

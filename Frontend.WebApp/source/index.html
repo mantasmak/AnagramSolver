@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="node_modules/anagramsolver-mvc-css/index.css">
+  <link rel="stylesheet" href="index.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -33,9 +33,9 @@
         <form action="#">
           <div class="form-group custom-text-input">
             <label for="word">Word:</label>
-            <input type="text" class="form-control" id="word">
+            <input type="text" class="form-control" id="word-input">
           </div>
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button onclick="requestWords()" type="submit" class="btn btn-primary">Search</button>
         </form>
       </div>
     </div>
@@ -53,6 +53,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="../js/main.js"></script>
 </body>
 
 </html>

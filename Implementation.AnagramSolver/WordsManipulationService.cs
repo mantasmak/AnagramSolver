@@ -43,11 +43,37 @@ namespace Implementation.AnagramSolver
             return false;
         }
 
+        public bool RemoveWord(int id, string userIp)
+        {
+            if (WordRepository.WordExists(id))
+            {
+                WordRepository.Delete(id);
+                NumOfSearchesRepository.DecrementNumOfAllowedSearches(userIp);
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool UpdateWord(string currentWord, string updatedWord, string userIp)
         {
             if (WordRepository.WordExists(currentWord))
             {
                 WordRepository.Update(currentWord, updatedWord);
+                NumOfSearchesRepository.IncrementNumOfAllowedSearches(userIp);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateWord(int id, string updatedWord, string userIp)
+        {
+            if (WordRepository.WordExists(id))
+            {
+                WordRepository.Update(id, updatedWord);
                 NumOfSearchesRepository.IncrementNumOfAllowedSearches(userIp);
 
                 return true;
