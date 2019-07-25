@@ -10,8 +10,8 @@
   <title>Anagram Solver</title>
 </head>
 
-<body>
-  
+<body onload="renderLandingPage()">
+
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="https://www.visma.com/">
       <img class="navbar-logo" src="visma-logo-small.png" alt="Logo">
@@ -26,20 +26,25 @@
     </ul>
   </nav>
 
-  <div class="container-fluid text-center">
-    <div class="row vertical-center">
-      <div class="col">
-        <img class="logo" src="visma-logo-small.png" alt="Logo">
-        <form action="#">
-          <div class="form-group custom-text-input">
-            <label for="word">Word:</label>
-            <input type="text" class="form-control" id="word-input">
-          </div>
-          <button onclick="requestWords()" type="submit" class="btn btn-primary">Search</button>
-        </form>
-      </div>
+  <div id="container" class="container-fluid text-center">
+    <div id="content">
     </div>
   </div>
+      <!--
+      <div class="row vertical-center">
+        <div class="col">
+          <img class="logo" src="visma-logo-small.png" alt="Logo">
+          <form action="#">
+            <div class="form-group custom-text-input">
+              <label for="word">Word:</label>
+              <input type="text" class="form-control" id="word-input">
+            </div>
+            <button onclick="requestWords()" type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
 
   <!-- Optional JavaScript -->
